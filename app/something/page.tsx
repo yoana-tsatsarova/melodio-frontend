@@ -35,11 +35,12 @@ const Page = () => {
         <>
             <Input onChange={(e) => setCountry(e.target.value)}></Input>
             <Button type="submit" onClick={getTopTenTracks}>Add</Button>
+            <div>
             {songIDs?.map((songID) => (
                 <iframe
                     className="rounded-md py-4"
                     src={songID}
-                    width="50%"
+                    width="100%"
                     height="352"
                     frameBorder="0"
                     allowFullScreen={true}
@@ -47,6 +48,7 @@ const Page = () => {
                     loading="lazy"
                 ></iframe>
             ))}
+            </div>
 
             {/*<Map />*/}
         </>
