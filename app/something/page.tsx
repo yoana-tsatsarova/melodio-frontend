@@ -1,41 +1,36 @@
 "use client"
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
+import {Input} from "@/components/ui/input";
+import {Form} from "@/components/ui/form";
+import {Button} from "@/components/ui/button";
 
 const Page = () => {
 
-    const accessToken = 'BQBxR0XaPin2uOgID_33uw2uz39_kKLfe5tlSxKtthdYwSCiqro6ubXrLZcRhAAwmV061Jetl18_FqQzuhEDVMzOZvoOUeo6f5wPNQrinddZepuIL5c'
-
-    const [response, setResponse] = useState('');
-
     const [playlistID, setPlaylistID] = useState('');
+    const [country, setCountry] = useState('');
+    const [songs, setSongs] = useState<String[]>([])
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const url = 'https://api.spotify.com/v1/search?q=Viral+50+Netherlands&type=playlist&market=NL&limit=1';
-                const headers = {
-                    Authorization: `Bearer ${accessToken}`,
-                };
+      const getTopTenTracks = async (e: any) =>  {
+          e.preventDefault();
 
+          try {
+              const url = 'http//localhost:8080';
+              const response = await axios.get(url);
+              const id: string = await response.data;
+              console.log(id);
+              await setPlaylistID(id);
 
-                const response = await axios.get(url, { headers });
-                console.log(response.data.playlists.items[0].id);
-
-                setResponse(response);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-
-
+          } catch (error) {
+              console.error(error);
+          }
+      }
 
     return (
-        <div className={"text-6xl text-red-600 "}>{response.length}</div>
+        <>
+                <Input onChange={(e) => setCountry(e.target.value)} ></Input>
+                <Button type="submit" onClick={getTopTenTracks}>Add</Button>
+        </>
     )
 }
 export default Page
