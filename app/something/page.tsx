@@ -8,20 +8,24 @@ import Map from "@/components/Map";
 
 const Page = () => {
 
-    const [songID, setSongID] = useState('');
+    const [songIDs, setSongIDs] = useState<String[]>();
     const [country, setCountry] = useState('');
-    const [songs, setSongs] = useState<String[]>([])
+    const [songs, setSongs] = useState<string[]>([])
 
     const getTopTenTracks = async (e: any) => {
         e.preventDefault();
 
         try {
-            const url = `https://journeo.azurewebsites.net/${country}`;
+            // const url = `https://journeo.azurewebsites.net/${country}`;
+            const url = `http://localhost:8080/${country}`;
             const response = await axios.get(url);
-            const id: string = await response.data;
-            console.log(id);
-            const songUrl = `https://open.spotify.com/embed/track/${id}?utm_source=generator`
-            setSongID(songUrl)
+            const ids: string[] = await response.data;
+            let idsArray: string[] = []
+            for (let url of ids) {
+                const songUrl = `https://open.spotify.com/embed/track/${url}?utm_source=generator`
+                idsArray.push(songUrl);
+            }
+            setSongIDs(idsArray);
         } catch (error) {
             console.error(error);
         }
@@ -31,19 +35,20 @@ const Page = () => {
         <>
             <Input onChange={(e) => setCountry(e.target.value)}></Input>
             <Button type="submit" onClick={getTopTenTracks}>Add</Button>
+            {songIDs?.map((songID) => (
+                <iframe
+                    className="rounded-md py-4"
+                    src={songID}
+                    width="50%"
+                    height="352"
+                    frameBorder="0"
+                    allowFullScreen={true}
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                ></iframe>
+            ))}
 
-            <iframe
-                className="rounded-md py-4"
-                src={songID}
-                width="50%"
-                height="352"
-                frameBorder="0"
-                allowFullScreen={true}
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-            ></iframe>
-
-            <Map />
+            {/*<Map />*/}
         </>
     )
 }
