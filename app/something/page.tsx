@@ -4,32 +4,46 @@ import axios from "axios";
 import {Input} from "@/components/ui/input";
 import {Form} from "@/components/ui/form";
 import {Button} from "@/components/ui/button";
+import Map from "@/components/Map";
 
 const Page = () => {
 
-    const [playlistID, setPlaylistID] = useState('');
+    const [songID, setSongID] = useState('');
     const [country, setCountry] = useState('');
     const [songs, setSongs] = useState<String[]>([])
 
-      const getTopTenTracks = async (e: any) =>  {
-          e.preventDefault();
+    const getTopTenTracks = async (e: any) => {
+        e.preventDefault();
 
-          try {
-              const url = 'http//localhost:8080';
-              const response = await axios.get(url);
-              const id: string = await response.data;
-              console.log(id);
-              await setPlaylistID(id);
-
-          } catch (error) {
-              console.error(error);
-          }
-      }
+        try {
+            const url = `https://journeo.azurewebsites.net/${country}`;
+            const response = await axios.get(url);
+            const id: string = await response.data;
+            console.log(id);
+            const songUrl = `https://open.spotify.com/embed/track/${id}?utm_source=generator`
+            setSongID(songUrl)
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <>
-                <Input onChange={(e) => setCountry(e.target.value)} ></Input>
-                <Button type="submit" onClick={getTopTenTracks}>Add</Button>
+            <Input onChange={(e) => setCountry(e.target.value)}></Input>
+            <Button type="submit" onClick={getTopTenTracks}>Add</Button>
+
+            <iframe
+                className="rounded-md py-4"
+                src={songID}
+                width="50%"
+                height="352"
+                frameBorder="0"
+                allowFullScreen={true}
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+            ></iframe>
+
+            <Map />
         </>
     )
 }
