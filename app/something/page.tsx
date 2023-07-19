@@ -8,16 +8,16 @@ import Map from "@/components/Map";
 
 const Page = () => {
 
-    const [songIDs, setSongIDs] = useState<String[]>();
+    const [songIDs, setSongIDs] = useState<string[]>();
     const [country, setCountry] = useState('');
-    const [songs, setSongs] = useState<string[]>([])
+    const [longitude, setLongitude] = useState(4.9041);
+    const [latitude, setLatitude] = useState(52.3676);
 
     const getTopTenTracks = async (e: any) => {
         e.preventDefault();
 
         try {
-            // const url = `https://journeo.azurewebsites.net/${country}`;
-            const url = `http://localhost:8080/${country}`;
+            const url = `https://melodio.azurewebsites.net/songs/${country}`;
             const response = await axios.get(url);
             const ids: string[] = await response.data;
             let idsArray: string[] = []
@@ -26,6 +26,11 @@ const Page = () => {
                 idsArray.push(songUrl);
             }
             setSongIDs(idsArray);
+
+            const urlCoordinates = `https://melodio.azurewebsites.net/coordinates/${country}`;
+            const responseCoordinates = await axios.get(urlCoordinates);
+            console.log(responseCoordinates.data);
+
         } catch (error) {
             console.error(error);
         }
