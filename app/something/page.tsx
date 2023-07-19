@@ -32,6 +32,8 @@ const Page = () => {
             setLatitude(responseCoordinates.data.latitude);
             setLongitude(responseCoordinates.data.longitude);
 
+            console.log(latitude, longitude)
+
         } catch (error) {
             console.error(error);
         }
@@ -56,7 +58,7 @@ const Page = () => {
             ))}
             </div>
 
-            {/*<Map />*/}
+            <Map longitude={longitude} latitude={latitude} />
         </>
     )
 }
