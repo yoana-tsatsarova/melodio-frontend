@@ -26,13 +26,12 @@ const Page = () => {
                 idsArray.push(songUrl);
             }
             setSongIDs(idsArray);
+            console.log(idsArray);
 
             const urlCoordinates = `https://melodio.azurewebsites.net/coordinates/${country}`;
             const responseCoordinates = await axios.get(urlCoordinates);
             setLatitude(responseCoordinates.data.latitude);
             setLongitude(responseCoordinates.data.longitude);
-
-            console.log(latitude, longitude)
 
         } catch (error) {
             console.error(error);
@@ -43,9 +42,11 @@ const Page = () => {
         <>
             <Input onChange={(e) => setCountry(e.target.value)}></Input>
             <Button type="submit" onClick={getTopTenTracks}>Add</Button>
-            <div>
-            {songIDs?.map((songID) => (
-                <iframe
+
+            <div className="grid grid-cols-5 ">
+                {songIDs?.map((songID) => (
+                    <div key={songID} className="w-64 mr-2">
+                    <iframe
                     className="rounded-md py-4"
                     src={songID}
                     width="100%"
@@ -54,11 +55,13 @@ const Page = () => {
                     allowFullScreen={true}
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                     loading="lazy"
-                ></iframe>
-            ))}
+                    ></iframe>
+                        <Button >Add to Cart</Button>
+                    </div>
+                    ))}
             </div>
 
-            <Map longitude={longitude} latitude={latitude} />
+            <Map key={`${latitude}-${longitude}`} longitude={longitude} latitude={latitude} />
         </>
     )
 }
