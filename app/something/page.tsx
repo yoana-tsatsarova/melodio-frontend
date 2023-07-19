@@ -10,8 +10,8 @@ const Page = () => {
 
     const [songIDs, setSongIDs] = useState<string[]>();
     const [country, setCountry] = useState('');
-    const [longitude, setLongitude] = useState(4.9041);
-    const [latitude, setLatitude] = useState(52.3676);
+    const [longitude, setLongitude] = useState<number>(4.9041);
+    const [latitude, setLatitude] = useState<number>(52.3676);
 
     const getTopTenTracks = async (e: any) => {
         e.preventDefault();
@@ -29,7 +29,8 @@ const Page = () => {
 
             const urlCoordinates = `https://melodio.azurewebsites.net/coordinates/${country}`;
             const responseCoordinates = await axios.get(urlCoordinates);
-            console.log(responseCoordinates.data);
+            setLatitude(responseCoordinates.data.latitude);
+            setLongitude(responseCoordinates.data.longitude);
 
         } catch (error) {
             console.error(error);
