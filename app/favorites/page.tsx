@@ -2,7 +2,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
 import {Button} from "@/components/ui/button";
-import {async} from "rxjs";
 
 const Page = () => {
 
@@ -13,10 +12,10 @@ const Page = () => {
         try {
             const url = "https://melodio.azurewebsites.net/favorites";
             const response = await axios.get(url);
-            setSongIds(response.data.map((songId) => songId.id))
-            console.log(response.data.map((songId) => songId.id))
+            setSongIds(response.data.map((songId: {id:string}) => songId.id))
+            console.log(response.data.map((songId: {id:string}) => songId.id))
             let urlArray: string[] = []
-            for (let id of response.data.map((songId) => songId.id)) {
+            for (let id of response.data.map((songId: {id:string}) => songId.id)) {
                 const songUrl = `https://open.spotify.com/embed/track/${id}?utm_source=generator`
                 urlArray.push(songUrl);
             }
