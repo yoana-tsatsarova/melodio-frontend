@@ -36,7 +36,7 @@ const Page = () => {
 
     const deleteSongFromPlaylist = async (e: any, songId: string) => {
         try {
-            const url = `https://melodio.azurewebsites.net/favorites${songId}`;
+            const url = `https://melodio.azurewebsites.net/favorites/${songId}`;
             await axios.delete(url);
             setSongIds(songIds?.filter(id => id !== songId))
         } catch (error) {
