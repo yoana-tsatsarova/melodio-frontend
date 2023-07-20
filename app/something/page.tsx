@@ -4,7 +4,7 @@ import axios from "axios";
 import {Input} from "@/components/ui/input";
 import {Form} from "@/components/ui/form";
 import {Button} from "@/components/ui/button";
-import Map from "@/components/Map";
+import MapBox from "@/components/MapBox";
 
 const Page = () => {
 
@@ -39,30 +39,35 @@ const Page = () => {
     }
 
     return (
-        <>
-            <Input onChange={(e) => setCountry(e.target.value)}></Input>
-            <Button type="submit" onClick={getTopTenTracks}>Add</Button>
-
-            <div className="grid grid-cols-5 ">
-                {songIDs?.map((songID) => (
-                    <div key={songID} className="w-64 mr-2">
-                    <iframe
-                    className="rounded-md py-4"
-                    src={songID}
-                    width="100%"
-                    height="352"
-                    frameBorder="0"
-                    allowFullScreen={true}
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                    ></iframe>
-                        <Button >Add to Cart</Button>
-                    </div>
+        <div className="flex h-screen w-full">
+            <div className="w-1/2 p-4 overflow-auto">
+                <Input onChange={(e) => setCountry(e.target.value)} />
+                <Button className="py-4 my-4" type="submit" onClick={getTopTenTracks}>
+                    Add
+                </Button>
+                <div className="grid grid-cols-3 gap-4">
+                    {songIDs?.map((songID) => (
+                        <div key={songID} className="w-64">
+                            <iframe
+                                className="rounded-md py-4"
+                                src={songID}
+                                width="100%"
+                                height="352"
+                                frameBorder="0"
+                                allowFullScreen={true}
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                loading="lazy"
+                            ></iframe>
+                            <Button>Add to Cart</Button>
+                        </div>
                     ))}
+                </div>
             </div>
+            <div className="w-1/2">
+                <MapBox  key={`${latitude}-${longitude}`} longitude={longitude} latitude={latitude} />
+            </div>
+        </div>
+    );
+};
 
-            <Map key={`${latitude}-${longitude}`} longitude={longitude} latitude={latitude} />
-        </>
-    )
-}
-export default Page
+export default Page;
