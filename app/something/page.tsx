@@ -2,10 +2,10 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
 import {Input} from "@/components/ui/input";
-import {Form} from "@/components/ui/form";
 import {Button} from "@/components/ui/button";
 import MapBox from "@/components/MapBox";
-import Sidebar from "@/components/Sidebar";
+import Link from "next/link";
+import {Form} from "@/components/ui/form";
 
 
 const Page = () => {
@@ -59,13 +59,21 @@ const Page = () => {
 
     return (
         <>
-            <main className="flex h-screen w-full ">
+            <main className="flex h-auto w-full ">
 
-                <section className="flex w-1/5 flex-col font-semibold space-y-10 h-full items-center bg-gray-900 text-slate-50" >
+                <section
+                    className="flex w-1/5 flex-col font-semibold space-y-10 h-full px-10 text-xl bg-gray-900 text-slate-50">
 
-                    <h2 className="pt-20">Home</h2>
+
+                    <Link href={"/"}>
+                        <h2 className="pt-20">Home</h2>
+                    </Link>
+
                     <h2>Globe</h2>
-                    <h2>Favorites</h2>
+                    <Link href={"/favorites"}>
+                        <h2>Favorites</h2>
+                    </Link>
+
                     <h2>Recommended</h2>
                     <h2>Quiz</h2>
                     <h2>About Us</h2>
@@ -73,37 +81,40 @@ const Page = () => {
 
                 </section>
                 <div className={"w-full"}>
-                    <div className="flex w-full max-w-xl mx-auto items-center space-x-2"><Input placeholder={"Enter a Country"} onChange={(e) => setCountry(e.target.value)}/>
+                    <div className="flex w-full max-w-xl mx-auto items-center space-x-2"><Input
+                        placeholder={"Enter a Country"} onChange={(e) => setCountry(e.target.value)}/>
                         <Button className="py-4 my-4" type="submit" onClick={getTopTenTracks}>
                             Add
                         </Button></div>
-                    <div className="w-full  " >
+                    <div className="w-full  ">
 
-                        <div >
+                        <div>
                             <MapBox key={`${latitude}-${longitude}`} longitude={longitude} latitude={latitude}/>
                         </div>
                     </div>
-                    <div> <div className="  p-4 overflow-auto">
+                    <div>
+                        <div className="  p-4 overflow-auto">
 
-                        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
-                            {songUrls?.map((songUrl) => (
-                                <div key={songUrl} className="w-64">
-                                    <iframe
-                                        className="rounded-md py-4"
-                                        src={songUrl}
-                                        width="100%"
-                                        height="352"
-                                        frameBorder="0"
-                                        allowFullScreen={true}
-                                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                                        loading="lazy"
-                                    ></iframe>
-                                    <Button onClick={(e) => addSongToPlaylist(e, songIds[songUrls?.indexOf(songUrl)])}>Add
-                                        to Favorite</Button>
-                                </div>
-                            ))}
+                            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
+                                {songUrls?.map((songUrl) => (
+                                    <div key={songUrl}>
+                                        <iframe
+                                            className="rounded-md"
+                                            src={songUrl}
+                                            width="100%"
+                                            height="300"
+                                            allowFullScreen={true}
+                                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                            loading="lazy"
+                                        ></iframe>
+                                        <form><Button className={"bg-slate-50 hover:bg-slate-300 text-slate-900 -top-2"}
+                                                      onClick={(e) => addSongToPlaylist(e, songIds[songUrls?.indexOf(songUrl)])}>Add
+                                            to Favorite</Button></form>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div></div>
+                    </div>
 
                 </div>
 
