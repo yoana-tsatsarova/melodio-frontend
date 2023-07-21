@@ -5,6 +5,8 @@ import {Input} from "@/components/ui/input";
 import {Form} from "@/components/ui/form";
 import {Button} from "@/components/ui/button";
 import MapBox from "@/components/MapBox";
+import Sidebar from "@/components/Sidebar";
+
 
 const Page = () => {
 
@@ -56,34 +58,58 @@ const Page = () => {
     }
 
     return (
-        <div className="flex h-screen w-full">
-            <div className="w-1/2 p-4 overflow-auto">
-                <Input onChange={(e) => setCountry(e.target.value)}/>
-                <Button className="py-4 my-4" type="submit" onClick={getTopTenTracks}>
-                    Add
-                </Button>
-                <div className="grid grid-cols-3 gap-4">
-                    {songUrls?.map((songUrl) => (
-                        <div key={songUrl} className="w-64">
-                            <iframe
-                                className="rounded-md py-4"
-                                src={songUrl}
-                                width="100%"
-                                height="352"
-                                frameBorder="0"
-                                allowFullScreen={true}
-                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                                loading="lazy"
-                            ></iframe>
-                            <Button onClick={(e)=> addSongToPlaylist(e,songIds[songUrls?.indexOf(songUrl)])}>Add to Favorite</Button>
+        <>
+            <main className="flex h-screen w-full ">
+
+                <section className="flex w-1/5 flex-col font-semibold space-y-10 h-full items-center bg-gray-900 text-slate-50" >
+
+                    <h2 className="pt-20">Home</h2>
+                    <h2>Globe</h2>
+                    <h2>Favorites</h2>
+                    <h2>Recommended</h2>
+                    <h2>Quiz</h2>
+                    <h2>About Us</h2>
+
+
+                </section>
+                <div className={"w-full"}>
+                    <div className="flex w-full max-w-xl mx-auto items-center space-x-2"><Input placeholder={"Enter a Country"} onChange={(e) => setCountry(e.target.value)}/>
+                        <Button className="py-4 my-4" type="submit" onClick={getTopTenTracks}>
+                            Add
+                        </Button></div>
+                    <div className="w-full  " >
+
+                        <div >
+                            <MapBox key={`${latitude}-${longitude}`} longitude={longitude} latitude={latitude}/>
                         </div>
-                    ))}
+                    </div>
+                    <div> <div className="  p-4 overflow-auto">
+
+                        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
+                            {songUrls?.map((songUrl) => (
+                                <div key={songUrl} className="w-64">
+                                    <iframe
+                                        className="rounded-md py-4"
+                                        src={songUrl}
+                                        width="100%"
+                                        height="352"
+                                        frameBorder="0"
+                                        allowFullScreen={true}
+                                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                        loading="lazy"
+                                    ></iframe>
+                                    <Button onClick={(e) => addSongToPlaylist(e, songIds[songUrls?.indexOf(songUrl)])}>Add
+                                        to Favorite</Button>
+                                </div>
+                            ))}
+                        </div>
+                    </div></div>
+
                 </div>
-            </div>
-            <div className="w-1/2">
-                <MapBox key={`${latitude}-${longitude}`} longitude={longitude} latitude={latitude}/>
-            </div>
-        </div>
+
+
+            </main>
+        </>
     );
 };
 

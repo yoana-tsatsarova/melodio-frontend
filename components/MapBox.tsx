@@ -74,7 +74,7 @@ const MapBox: React.FC<MapComponentProps> = ({ latitude = 52.3676, longitude = 4
     return    <div
         ref={mapContainer}
         id="map"
-        className="fixed top-0 right-0 h-screen w-full"
+        className="fixed top-0 right-0 h-[60vh] w-full"
     />
 };
 
