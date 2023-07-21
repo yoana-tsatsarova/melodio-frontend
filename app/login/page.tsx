@@ -10,9 +10,9 @@ export default function Login() {
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "spotify",
-    });
+      const { data, error } = await supabase.auth.signInWithOAuth({
+          provider: 'spotify',
+      })
     if (error) {
       console.log(error);
     } else {
