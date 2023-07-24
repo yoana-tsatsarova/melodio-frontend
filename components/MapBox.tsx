@@ -1,52 +1,75 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import "mapbox-gl/dist/mapbox-gl.css";
+import React, { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 
-mapboxgl.accessToken = "pk.eyJ1IjoiaGlsbG9kZXNpZ24iLCJhIjoiY2w1aXhxcm5pMGIxMTNsa21ldjRkanV4ZyJ9.ztk5_j48dkFtce1sTx0uWw";
+const MAPBOX_TOKEN = "pk.eyJ1IjoiaGlsbG9kZXNpZ24iLCJhIjoiY2w1aXhxcm5pMGIxMTNsa21ldjRkanV4ZyJ9.ztk5_j48dkFtce1sTx0uWw";
+
+type Location = {
+    lng: number;
+    lat: number;
+};
 
 interface MapComponentProps {
-    latitude: number;
-    longitude: number;
-    locations: { lat: number; lng: number }[];
+    latitude?: number;
+    longitude?: number;
+    locations: Location[];
 }
 
-const MapBox: React.FC<MapComponentProps> = ({ latitude, longitude, locations }) => {
+const MapBox: React.FC<MapComponentProps> = ({ latitude = 52.3676, longitude = 4.9041, locations = [] }) => {
     const mapContainer = useRef<HTMLDivElement | null>(null);
     const map = useRef<mapboxgl.Map | null>(null);
-    const markerRefs = useRef<(mapboxgl.Marker | null)[]>([]);
+    const [prevLocation, setPrevLocation] = useState<Location>({lng: longitude, lat: latitude});
+    const [markerRefs, setMarkerRefs] = useState<mapboxgl.Marker[]>([]);
 
+    // Initiate the map
     useEffect(() => {
+        mapboxgl.accessToken = MAPBOX_TOKEN;
         if (map.current) return; // initialize map only once
-
         map.current = new mapboxgl.Map({
             container: mapContainer.current as HTMLElement,
             style: "mapbox://styles/mapbox/streets-v12",
-            center: [longitude, latitude],
+            center: [prevLocation.lng, prevLocation.lat],
             zoom: 1,
         });
-
     }, []);
 
+    // Add markers to the map
     useEffect(() => {
         if (!map.current) return; // wait for map to initialize
 
-        // Remove old markers
-        markerRefs.current.forEach((marker) => marker?.remove());
-        markerRefs.current = [];
+        // remove all previous markers
+        markerRefs.forEach((marker) => marker.remove());
+        const newMarkerRefs: mapboxgl.Marker[] = [];
 
         // Add new markers
         locations.forEach((location) => {
             const marker = new mapboxgl.Marker().setLngLat([location.lng, location.lat]).addTo(map.current!);
-            markerRefs.current.push(marker);
+            newMarkerRefs.push(marker);
         });
 
-        // Update map view to contain all markers
-        const bounds = new mapboxgl.LngLatBounds();
-        locations.forEach((location) => bounds.extend([location.lng, location.lat]));
-        map.current.fitBounds(bounds, { padding: 50 });
+        setMarkerRefs(newMarkerRefs);
     }, [locations]);
 
-    return <div ref={mapContainer} id="map" className="fixed top-0 right-0 h-[60vh] w-full" />;
+    // Fly to new location whenever latitude or longitude changes
+    useEffect(() => {
+        if (map.current && !isNaN(longitude) && !isNaN(latitude)) {
+            setTimeout(() => {
+                map.current?.flyTo({
+                    center: [longitude, latitude],
+                    zoom: 8,
+                    speed: 0.6, // slower speed
+                });
+                setPrevLocation({lng: longitude, lat: latitude});
+            }, 4000);
+        }
+    }, [longitude, latitude]);
+
+    return    <div
+        ref={mapContainer}
+        id="map"
+        className="fixed top-0 right-0 h-[60vh] w-full"
+    />
 };
 
 export default MapBox;
