@@ -65,8 +65,8 @@ const MapBox: React.FC<MapComponentProps> = ({ latitude = 52.3676, longitude = 4
         if (!isNaN(lng) && !isNaN(lat) && map.current) {
             map.current.flyTo({
                 center: [lng, lat],
-                zoom: 6,
-                speed: 0.6, // slower speed
+                zoom: 8,
+                speed: 0.5, // slower speed
             });
         }
     };
