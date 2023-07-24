@@ -1,81 +1,52 @@
 "use client";
-import "mapbox-gl/dist/mapbox-gl.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 
-const MAPBOX_TOKEN = "pk.eyJ1IjoiaGlsbG9kZXNpZ24iLCJhIjoiY2w1aXhxcm5pMGIxMTNsa21ldjRkanV4ZyJ9.ztk5_j48dkFtce1sTx0uWw";
-
-type Location = {
-    lng: number;
-    lat: number;
-};
+mapboxgl.accessToken = "pk.eyJ1IjoiaGlsbG9kZXNpZ24iLCJhIjoiY2w1aXhxcm5pMGIxMTNsa21ldjRkanV4ZyJ9.ztk5_j48dkFtce1sTx0uWw";
 
 interface MapComponentProps {
-    latitude?: number;
-    longitude?: number;
+    latitude: number;
+    longitude: number;
+    locations: { lat: number; lng: number }[];
 }
 
-const MapBox: React.FC<MapComponentProps> = ({ latitude = 52.3676, longitude = 4.9041 }) => {
+const MapBox: React.FC<MapComponentProps> = ({ latitude, longitude, locations }) => {
     const mapContainer = useRef<HTMLDivElement | null>(null);
     const map = useRef<mapboxgl.Map | null>(null);
-    const [prevLocation, setPrevLocation] = useState<Location>({lng: longitude, lat: latitude});
+    const markerRefs = useRef<(mapboxgl.Marker | null)[]>([]);
 
     useEffect(() => {
-        mapboxgl.accessToken = MAPBOX_TOKEN;
-
         if (map.current) return; // initialize map only once
 
         map.current = new mapboxgl.Map({
             container: mapContainer.current as HTMLElement,
             style: "mapbox://styles/mapbox/streets-v12",
-            center: [prevLocation.lng, prevLocation.lat],
+            center: [longitude, latitude],
             zoom: 1,
-        });
-
-        map.current.on('click', (e) => {
-            const location: Location = {
-                lng: e.lngLat.lng,
-                lat: e.lngLat.lat,
-            };
-
-            if (!isNaN(location.lng) && !isNaN(location.lat)) {
-                new mapboxgl.Marker().setLngLat([location.lng, location.lat]).addTo(map.current!);
-                flyTo(e);
-            }
         });
 
     }, []);
 
     useEffect(() => {
-        // Fly to new location whenever latitude or longitude changes
-        if (map.current && !isNaN(longitude) && !isNaN(latitude)) {
-            map.current.flyTo({
-                center: [longitude, latitude],
-                zoom: 4,
-                speed: 0.6, // slower speed
-            });
-            setPrevLocation({lng: longitude, lat: latitude});
-        }
-    }, [longitude, latitude]);
+        if (!map.current) return; // wait for map to initialize
 
-    const flyTo = (event: mapboxgl.MapMouseEvent & mapboxgl.EventData) => {
-        const lng = event.lngLat.lng;
-        const lat = event.lngLat.lat;
+        // Remove old markers
+        markerRefs.current.forEach((marker) => marker?.remove());
+        markerRefs.current = [];
 
-        if (!isNaN(lng) && !isNaN(lat) && map.current) {
-            map.current.flyTo({
-                center: [lng, lat],
-                zoom: 8,
-                speed: 0.5, // slower speed
-            });
-        }
-    };
+        // Add new markers
+        locations.forEach((location) => {
+            const marker = new mapboxgl.Marker().setLngLat([location.lng, location.lat]).addTo(map.current!);
+            markerRefs.current.push(marker);
+        });
 
-    return    <div
-        ref={mapContainer}
-        id="map"
-        className="fixed top-0 right-0 h-[60vh] w-full"
-    />
+        // Update map view to contain all markers
+        const bounds = new mapboxgl.LngLatBounds();
+        locations.forEach((location) => bounds.extend([location.lng, location.lat]));
+        map.current.fitBounds(bounds, { padding: 50 });
+    }, [locations]);
+
+    return <div ref={mapContainer} id="map" className="fixed top-0 right-0 h-[60vh] w-full" />;
 };
 
 export default MapBox;

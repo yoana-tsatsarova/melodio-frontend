@@ -1,5 +1,5 @@
 import React from 'react';
-import {SpotifyTrack} from "@/app/types/types";
+import {SpotifyTrack} from "@/types/types";
 
 interface TopTracksProps {
     tracks: SpotifyTrack[] | null;

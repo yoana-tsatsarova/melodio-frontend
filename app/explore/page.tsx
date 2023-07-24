@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Link from "next/link";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,13 +7,33 @@ import MapBox from "@/components/MapBox";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaHeart } from 'react-icons/fa';
+import Link from "next/link";
+
+interface Location {
+  lng: number;
+  lat: number;
+}
 
 const Page = () => {
+  const [locations, setLocations] = useState<Location[]>([]);
   const [songUrls, setSongUrls] = useState<string[]>();
   const [country, setCountry] = useState("");
   const [longitude, setLongitude] = useState<number>(4.9041);
   const [latitude, setLatitude] = useState<number>(52.3676);
   const [songIds, setSongIds] = useState<string[]>([]);
+
+  const getCountryLocation = async (country: string): Promise<Location> => {
+    // Replace this with actual API call to get the location of a country
+    const url = `https://melodio.azurewebsites.net/coordinates/${country}`;
+    const response = await axios.get(url);
+    return { lng: response.data.longitude, lat: response.data.latitude };
+  };
+
+  const addCountry = async (e: any) => {
+    e.preventDefault();
+    const countryLocation = await getCountryLocation(country);
+    setLocations(prevLocations => [...prevLocations, countryLocation]);
+  };
 
   const getTopTenTracks = async (e: any) => {
     e.preventDefault();
@@ -30,12 +49,10 @@ const Page = () => {
       }
       setSongUrls(urlArray);
       setSongIds(ids);
-      console.log(urlArray);
 
-      const urlCoordinates = `https://melodio.azurewebsites.net/coordinates/${country}`;
-      const responseCoordinates = await axios.get(urlCoordinates);
-      setLatitude(responseCoordinates.data.latitude);
-      setLongitude(responseCoordinates.data.longitude);
+      const countryLocation = await getCountryLocation(country);
+      setLatitude(countryLocation.lat);
+      setLongitude(countryLocation.lng);
     } catch (error) {
       console.error(error);
     }
@@ -93,9 +110,9 @@ const Page = () => {
             <div className="w-full  ">
               <div>
                 <MapBox
-                    key={`${latitude}-${longitude}`}
-                    longitude={longitude}
+                    locations={locations}
                     latitude={latitude}
+                    longitude={longitude}
                 />
               </div>
             </div>

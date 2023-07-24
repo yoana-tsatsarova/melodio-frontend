@@ -1,13 +1,8 @@
 import React from 'react';
-
-interface SpotifyProfile {
-    display_name: string;
-    email: string;
-    images: { url: string }[];
-}
+import {SpotifyProfileType} from "@/types/types";
 
 interface SpotifyProfileProps {
-    profile: SpotifyProfile | null;
+    profile: SpotifyProfileType | null;
 }
 
 const SpotifyProfile: React.FC<SpotifyProfileProps> = ({ profile }) => {

@@ -4,9 +4,10 @@ import Avatar from './avatar';
 import { Database } from '../database.types';
 import { createClientComponentClient, Session } from '@supabase/auth-helpers-nextjs';
 import { Button } from "@/components/ui/button";
-import SpotifyProfile from '@/components/SpotifyProfile';
+
 import TopTracks from '@/components/TopTracks';
-import { SpotifyTrack, SpotifyProfile as SpotifyProfileType }  from "@/app/types/types";
+import SpotifyProfile from "@/components/SpotifyProfile";
+import {SpotifyProfileType, SpotifyTrack} from "@/types/types";
 
 interface AccountFormProps {
     session: Session | null;
@@ -23,7 +24,7 @@ export default function AccountForm({ session }: AccountFormProps) {
     const token = session?.provider_token;
     const [spotifyProfile, setSpotifyProfile] = useState<SpotifyProfileType | null>(null);
     const [topTracks, setTopTracks] = useState<SpotifyTrack[] | null>(null);
-    console.log(`Token: ${token}`);
+console.log(`Token: ${token}`);
 
     async function fetchWebApi(endpoint: string, method: string, body?: any) {
         const res = await fetch(`https://api.spotify.com/${endpoint}`, {
@@ -33,9 +34,13 @@ export default function AccountForm({ session }: AccountFormProps) {
             method,
             body: JSON.stringify(body)
         });
+        const data = await res.json(); // read once and store it
+        console.log(`Response Status: ${res.status}`);
+        console.log(`Response Data:`, data);
 
-        return await res.json();
+        return data;
     }
+
 
     async function getTopTracks(){
         const results = await fetchWebApi('v1/me/top/tracks?time_range=short_term&limit=5', 'GET');
