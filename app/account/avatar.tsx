@@ -86,7 +86,7 @@ export default function Avatar({
       )}
       <div className="mt-2">
         <label
-          className={`block rounded py-2 ${
+          className={`block rounded py-2 px-6 ${
             uploading ? "bg-gray-300" : "bg-blue-500 text-white"
           }`}
           htmlFor="single"
