@@ -1,12 +1,10 @@
-"use client"
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "./database.types";
-import { useEffect, useState } from "react"; // Add this import for the useEffect and useState hooks
+import { useEffect, useState } from "react";
 
-
-export default function AuthForm() {
+const AuthForm = () => {
   const supabase = createClientComponentClient<Database>();
   const [spotifySuccess, setSpotifySuccess] = useState(false);
 
@@ -18,24 +16,24 @@ export default function AuthForm() {
     }
   }, [spotifySuccess]);
 
-
-    if (error) {
-      console.error("Spotify authentication error:", error);
+  const handleAuthStateChange = (event: any) => {
+    if (event.error) {
+      console.log("Spotify authentication error:", event.error);
     } else {
       setSpotifySuccess(true);
     }
   };
 
   return (
-      <>
-        <Auth
-            supabaseClient={supabase}
-            appearance={{ theme: ThemeSupa }}
-            theme="dark"
-            showLinks={false}
-            providers={["spotify"]}
-            redirectTo="https://supabase-nextjs-user-spotify.vercel.app/auth/callback"
-        />
-      </>
+      <Auth
+          supabaseClient={supabase}
+          appearance={{ theme: ThemeSupa }}
+          theme="dark"
+          showLinks={false}
+          providers={["spotify"]}
+          redirectTo="https://supabase-nextjs-user-spotify.vercel.app/auth/callback"
+      />
   );
-}
+};
+
+export default AuthForm;
