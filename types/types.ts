@@ -37,6 +37,7 @@ export interface SpotifyProfileType {
     display_name: string;
     email: string;
     images: { url: string }[];
+    id: string;
 }
 
 interface AccountFormProps {

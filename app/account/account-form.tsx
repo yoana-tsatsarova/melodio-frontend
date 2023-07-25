@@ -24,7 +24,6 @@ export default function AccountForm({ session }: AccountFormProps) {
     const token = session?.provider_token;
     const [spotifyProfile, setSpotifyProfile] = useState<SpotifyProfileType | null>(null);
     const [topTracks, setTopTracks] = useState<SpotifyTrack[] | null>(null);
-console.log(`Token: ${token}`);
 
     async function fetchWebApi(endpoint: string, method: string, body?: any) {
         const res = await fetch(`https://api.spotify.com/${endpoint}`, {
@@ -42,11 +41,11 @@ console.log(`Token: ${token}`);
     }
 
 
-    async function getTopTracks(){
-        const results = await fetchWebApi('v1/me/top/tracks?time_range=short_term&limit=5', 'GET');
-        console.log(results);  // Add this line to log the data
-        return results.items as SpotifyTrack[];
-    }
+    // async function getTopTracks(){
+    //     const results = await fetchWebApi('v1/me/top/tracks?limit=5', 'GET');
+    //     console.log(results);  // Add this line to log the data
+    //     return results.items as SpotifyTrack[];
+    // }
 
     async function getUserProfile() {
         return await fetchWebApi('v1/me', 'GET') as SpotifyProfileType;
@@ -56,13 +55,13 @@ console.log(`Token: ${token}`);
         const fetchData = async () => {
             const userProfile = await getUserProfile();
             setSpotifyProfile(userProfile);
-
-            const userTopTracks = await getTopTracks();
-            setTopTracks(userTopTracks);
-            console.log(userTopTracks);
+            // const userTopTracks = await getTopTracks();
+            // setTopTracks(userTopTracks);
+            // console.log(userTopTracks);
         };
 
         fetchData();
+        console.log("spotifyProfile: ", spotifyProfile?.id)
     }, []);
 
     const getProfile = useCallback(async () => {
@@ -92,9 +91,9 @@ console.log(`Token: ${token}`);
         }
     }, [user, supabase]);
 
-    useEffect(() => {
-        getProfile();
-    }, [user, getProfile]);
+    // useEffect(() => {
+    //     getProfile();
+    // }, [user, getProfile]);
 
     async function updateProfile({
                                      username,
