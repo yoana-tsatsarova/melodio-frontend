@@ -1,5 +1,6 @@
 import AuthForm from "./auth-form";
 import Marquee from "react-fast-marquee";
+import Login from "@/app/login";
 
 const Header = () => (
   <h1 className={"text-center text-7xl font-bold text-slate-50"}>
@@ -19,7 +20,7 @@ export default function Home() {
       <div className={"flex flex-col items-center"}>
         <Header />
         <MarqueeNames />
-        <AuthForm />
+     <Login />
       </div>
     </>
   );
