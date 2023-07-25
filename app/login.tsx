@@ -14,24 +14,15 @@ export default function Login() {
     const router = useRouter()
     const supabase = createClientComponentClient<Database>()
 
-    async function signInWithSpotify() {
+    const signInWithSpotify = async () => {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: "spotify",
             options: {
                 scopes:
-                    "user-read-playback-state user-modify-playback-state user-read-currently-playing playlist-read-private playlist-modify-private user-read-playback-position",
+                    "user-read-playback-state user-modify-playback-state user-read-currently-playing playlist-read-private playlist-modify-private user-read-playback-position user-top-read",
                 grant_type: "authorization_code",
             },
         });
-        router.refresh()
-    }
-
-    const handleSignIn = async () => {
-        await supabase.auth.signInWithPassword({
-            email,
-            password,
-        })
-        router.refresh()
     }
 
     const handleSignOut = async () => {

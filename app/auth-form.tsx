@@ -18,15 +18,6 @@ export default function AuthForm() {
     }
   }, [spotifySuccess]);
 
-  const signInWithSpotify = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "spotify",
-      options: {
-        scopes:
-            "user-read-playback-state user-modify-playback-state user-read-currently-playing playlist-read-private playlist-modify-private user-read-playback-position",
-        grant_type: "authorization_code",
-      },
-    });
 
     if (error) {
       console.error("Spotify authentication error:", error);
