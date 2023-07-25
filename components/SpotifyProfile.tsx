@@ -10,7 +10,8 @@ const SpotifyProfile: React.FC<SpotifyProfileProps> = ({ profile }) => {
 
     return (
         <div>
-            <img src={profile.images[0]?.url} alt="user profile"/>
+            <img src={profile.images && profile.images[0]?.url} alt="user profile"/>
+
             <h2>Spotify User Profile</h2>
             <p>Name: {profile.display_name}</p>
             <p>Email: {profile.email}</p>

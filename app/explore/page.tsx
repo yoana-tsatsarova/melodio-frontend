@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaHeart } from 'react-icons/fa';
 import Link from "next/link";
 
+
 interface Location {
   lng: number;
   lat: number;
@@ -147,6 +148,8 @@ const Page = () => {
                         </form>
                       </div>
                   ))}
+
+
                 </div>
               </div>
             </div>
