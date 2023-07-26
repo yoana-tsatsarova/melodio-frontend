@@ -31,7 +31,7 @@ const Recommended = ({ session }: AccountFormProps) => {
 
     useEffect(() => {
         const token = session?.provider_token;
-        console.log(token)
+        console.log("THe Token",token)
         async function fetchWebApi<T>(endpoint: string, method: HttpMethod, body?: any): Promise<T> {
             const res = await axios(`https://api.spotify.com/${endpoint}`, {
                 headers: {
@@ -64,7 +64,7 @@ const Recommended = ({ session }: AccountFormProps) => {
 
                 const allTrackIds: string[] = [...topTracksIds, ...recommendedTracksIds];
                 const trackURIS = allTrackIds.map(id => `spotify:track:${id}`);
-
+                console.log(trackURIS)
                 const createdPlaylist = await createPlaylist(trackURIS);
                 const url = `https://open.spotify.com/embed/playlist/${createdPlaylist.id}?utm_source=generator&theme=0`
                 setPlaylistUrl(url);

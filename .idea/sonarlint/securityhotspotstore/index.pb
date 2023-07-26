@@ -1,8 +1,6 @@
 
 O
 components/ui/dropdown-menu.tsx,b/5/b5394efa3658142b6dd75111a37f870f3a787a28
-L
-app/account/account-form.tsx,d/5/d5bf9f0b15ce3f0afa9faa26d5a65590cee85fa4
 M
 components/SpotifyProfile.tsx,3/b/3b067028ba4b11ec2b70abd586ed23b10f8c5071
 H
@@ -15,8 +13,6 @@ B
 tailwind.config.js,0/9/0918cbb76f2c44f223706cec9d31a32cd1177ce4
 G
 public/spotify-icon.svg,b/5/b5b3ab3445b3bb9662a764e276a3e51a43482aef
-F
-app/account/avatar.tsx,3/1/31e8008c43d89cce15babeb36bc73d1f998fe090
 ?
 components.json,c/7/c77795c1a93b077ad2aef052b6a976d9dc92f5b8
 :

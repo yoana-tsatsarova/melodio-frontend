@@ -5,8 +5,6 @@ H
 components/TopTracks.tsx,5/9/59981c395be9b60c66c3d03b2cf8d8e208e98996
 M
 components/SpotifyProfile.tsx,3/b/3b067028ba4b11ec2b70abd586ed23b10f8c5071
-L
-app/account/account-form.tsx,d/5/d5bf9f0b15ce3f0afa9faa26d5a65590cee85fa4
 >
 types/types.ts,3/5/353ee6ebceb4d469d913e7558b730312d92d5199
 B
@@ -15,8 +13,6 @@ B
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 G
 public/spotify-icon.svg,b/5/b5b3ab3445b3bb9662a764e276a3e51a43482aef
-F
-app/account/avatar.tsx,3/1/31e8008c43d89cce15babeb36bc73d1f998fe090
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302

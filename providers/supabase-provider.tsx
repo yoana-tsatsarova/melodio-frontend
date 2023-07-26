@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Session, SupabaseClient, createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
-import { Database } from '../app/database.types'
+import {Database} from "@/types/supabase";
 
 type MaybeSession = Session | null
 
@@ -15,9 +15,9 @@ type SupabaseContext = {
 const Context = createContext<SupabaseContext | undefined>(undefined)
 
 export default function SupabaseProvider({
-  children,
-  session,
-}: {
+                                           children,
+                                           session,
+                                         }: {
   children: React.ReactNode
   session: MaybeSession
 }) {
@@ -39,17 +39,17 @@ export default function SupabaseProvider({
   }, [router, supabase, session])
 
   return (
-    <Context.Provider value={{ supabase, session }}>
-      <>{children}</>
-    </Context.Provider>
+      <Context.Provider value={{ supabase, session }}>
+        <>{children}</>
+      </Context.Provider>
   )
 }
 
 export const useSupabase = <
-  Database = any,
-  SchemaName extends string & keyof Database = 'public' extends keyof Database
-    ? 'public'
-    : string & keyof Database
+    Database = any,
+    SchemaName extends string & keyof Database = 'public' extends keyof Database
+        ? 'public'
+        : string & keyof Database
 >() => {
   let context = useContext(Context)
 

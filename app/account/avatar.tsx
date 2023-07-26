@@ -1,19 +1,22 @@
 "use client";
-import React, { useEffect, useState, ChangeEvent } from "react";
+import React, { useEffect, useState } from "react";
 import { Database } from "../database.types";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
 
 type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
-interface AvatarProps {
+export default function Avatar({
+                                 uid,
+                                 url,
+                                 size,
+                                 onUpload,
+                               }: {
   uid: string;
   url: Profiles["avatar_url"];
   size: number;
   onUpload: (url: string) => void;
-}
-
-const Avatar: React.FC<AvatarProps> = ({ uid, url, size, onUpload }) => {
+}) {
   const supabase = createClientComponentClient<Database>();
   const [avatarUrl, setAvatarUrl] = useState<Profiles["avatar_url"]>(url);
   const [uploading, setUploading] = useState(false);
@@ -38,7 +41,9 @@ const Avatar: React.FC<AvatarProps> = ({ uid, url, size, onUpload }) => {
     if (url) downloadImage(url);
   }, [url, supabase]);
 
-  const uploadAvatar = async (event: ChangeEvent<HTMLInputElement>) => {
+  const uploadAvatar: React.ChangeEventHandler<HTMLInputElement> = async (
+      event
+  ) => {
     try {
       setUploading(true);
 
@@ -50,17 +55,17 @@ const Avatar: React.FC<AvatarProps> = ({ uid, url, size, onUpload }) => {
       const fileExt = file.name.split(".").pop();
       const filePath = `${uid}-${Math.random()}.${fileExt}`;
 
-      let { error } = await supabase.storage
+      let { error: uploadError } = await supabase.storage
           .from("avatars")
           .upload(filePath, file);
 
-      if (error) {
-        throw error;
+      if (uploadError) {
+        throw uploadError;
       }
 
       onUpload(filePath);
     } catch (error) {
-      alert("Error uploading avatar: " + error);
+      alert("Error uploading avatar!");
     } finally {
       setUploading(false);
     }
@@ -103,5 +108,3 @@ const Avatar: React.FC<AvatarProps> = ({ uid, url, size, onUpload }) => {
       </div>
   );
 }
-
-export default Avatar;
