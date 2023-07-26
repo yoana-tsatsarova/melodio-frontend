@@ -9,9 +9,7 @@ export default function Home() {
   return (
     <>
       <section>
-
         <HeroSection />
-
           <Aboutus />
           <Skills />
           <Works />

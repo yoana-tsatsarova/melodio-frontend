@@ -171,7 +171,7 @@ const Page = () => {
                             onChange={(e) => setCountry(e.target.value)}
                         />
                         <Button
-                            className="py-4 my-4 rounded-md "
+                            className="px-9 my-2 h-9 rounded-md border-stone-700 hover:bg-spotify-green"
                             type="submit"
                             onClick={getTopTenTracks}
                             variant={"outline"}
