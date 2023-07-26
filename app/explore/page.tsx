@@ -99,7 +99,7 @@ const Page = () => {
                         {/*        </h2>*/}
                         {/*    </div>*/}
                         {/*</Link>*/}
-                        <Separator className="my-4 border-stone-700"/>
+                        {/*<Separator className="my-4 border-stone-700"/>*/}
                         <Link href={"/explore"}>
                             <Button variant="ghost" className="w-full justify-start">
                                 <svg
