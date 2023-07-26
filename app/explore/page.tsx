@@ -8,7 +8,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaHeart } from 'react-icons/fa';
 import Link from "next/link";
-import { useToast } from "@/components/ui/use-toast"
 import {Separator} from "@/components/ui/seperator";
 
 

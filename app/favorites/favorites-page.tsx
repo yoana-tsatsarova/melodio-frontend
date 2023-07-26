@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Session} from "@supabase/auth-helpers-nextjs";
-import scope from "@maplibre/maplibre-gl-style-spec/src/expression/scope";
 import {
     AlertDialog, AlertDialogAction, AlertDialogCancel,
     AlertDialogContent, AlertDialogDescription,
