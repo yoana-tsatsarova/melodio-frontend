@@ -53,25 +53,7 @@ const Recommended = ({ session }: AccountFormProps) => {
             return response.tracks || [];
         }
 
-        async function createPlaylist(tracksUri: string[]): Promise<Playlist> {
-            const { id: user_id } = await fetchWebApi<{ id: string }>('v1/me', 'GET')
-
-            const playlist: Playlist = await fetchWebApi<Playlist>(
-                `v1/users/${user_id}/playlists`, 'POST', {
-                    "name": "Melodio Recommended",
-                    "description": "Playlist created by Melodio based on your listening history",
-                    "public": false
-                })
-
-            await fetchWebApi(
-                `v1/playlists/${playlist.id}/tracks?uris=${tracksUri.join(',')}`,
-                'POST'
-            );
-
-            return playlist;
-        }
-
-        async function main() {
+         const main = async() => {
             try {
                 const topTracks = await getTopTracks();
                 const topTracksIds: string[] = topTracks.map(track => track.id);
@@ -92,6 +74,28 @@ const Recommended = ({ session }: AccountFormProps) => {
             }
         }
 
+
+        async function createPlaylist(tracksUri: string[]) {
+            const response = await fetchWebApi('v1/me', 'GET');
+            const { id: user_id } = response as { id: string }; // Type assertion to inform TypeScript about the 'id' property
+
+            const playlist: Playlist = await fetchWebApi(
+                `v1/users/${user_id}/playlists`,
+                'POST',
+                {
+                    "name": "Melodio Recommended",
+                    "description": "Playlist created by Melodio based on your listening history",
+                    "public": false
+                }
+            );
+
+            await fetchWebApi(
+                `v1/playlists/${playlist.id}/tracks?uris=${tracksUri.join(',')}`,
+                'POST'
+            );
+
+            return playlist;
+        }
         main();
 
     }, []);
