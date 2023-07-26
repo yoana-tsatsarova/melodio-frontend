@@ -14,7 +14,7 @@ export default async function RootLayout({
     <html lang="en">
       <body>
 
-        <main className="flex min-h-screen  items-center bg-gray-900 text-stone-50">
+        <main className="flex min-h-screen  items-center bg-gray-1100 text-stone-50">
           {children}
           <Toaster />
         </main>

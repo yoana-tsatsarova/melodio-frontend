@@ -6,6 +6,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Session} from "@supabase/auth-helpers-nextjs";
 import scope from "@maplibre/maplibre-gl-style-spec/src/expression/scope";
+import {
+    AlertDialog, AlertDialogAction, AlertDialogCancel,
+    AlertDialogContent, AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader, AlertDialogTitle,
+    AlertDialogTrigger
+} from "@/components/ui/alert-dialog";
 
 interface AccountFormProps {
     session: Session | null;
@@ -98,6 +105,8 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                             loading="lazy"
                         ></iframe>
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
                         <Button
                             className="bg-amber-700 text-white"
                             onClick={(e) =>
@@ -107,6 +116,21 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                             Delete
 
                         </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        This action cannot be undone. This will permanently delete your
+                                        favorites and remove your songs from your playlist.
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                    <AlertDialogAction>Continue</AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                     </div>
                 ))}{" "}
                 <ToastContainer autoClose={1200} theme={"dark"} />

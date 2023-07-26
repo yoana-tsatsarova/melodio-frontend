@@ -8,6 +8,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaHeart } from 'react-icons/fa';
 import Link from "next/link";
+import { useToast } from "@/components/ui/use-toast"
+import {Separator} from "@/components/ui/seperator";
 
 
 interface Location {
@@ -80,19 +82,31 @@ const Page = () => {
       <>
         <ToastContainer autoClose={1200} theme={"dark"} />
         <main className="flex h-auto w-full ">
-          <section className="flex w-1/5 flex-col font-semibold space-y-10 h-full px-10 text-xl bg-gray-900 text-slate-50">
+          <section   className="
+          hidden
+          md:flex
+          flex-col
+          gap-y-4
+
+          h-full
+          w-[300px]
+          p-4
+        ">
+
             <Link href={"/"}>
               <h2 className="pt-20">Home</h2>
             </Link>
-
-            <h2>Globe</h2>
+            <Separator className="my-4"/>
+            <h2>Explore</h2>
+            <Separator className="my-4"/>
             <Link href={"/favorites"}>
               <h2>Favorites</h2>
             </Link>
-
+            <Separator className="my-4"/>
             <h2>Recommended</h2>
-            <h2>Quiz</h2>
+            <Separator className="my-4"/>
             <h2>About Us</h2>
+          <Separator className="my-4"/>
           </section>
           <div className={"w-full"}>
             <div className="flex w-full max-w-xl mx-auto items-center space-x-2">
