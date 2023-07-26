@@ -176,7 +176,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
           <Separator className="my-4"/>
       </section>
   </div>
-      <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
+      {/*<Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>*/}
       <div className="grid grid-cols-4 gap-4 place-items-center mx-auto">
           {songUrls?.map((songUrl) => (
               <div key={songUrl} className={"group"}>
@@ -220,6 +220,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
           ))}
           <ToastContainer autoClose={1200} theme={"dark"} />
       </div></main>
+            <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
         </>
     );
 };
