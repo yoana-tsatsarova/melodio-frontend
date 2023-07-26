@@ -81,33 +81,91 @@ const Page = () => {
   return (
       <>
         <ToastContainer autoClose={1200} theme={"dark"} />
-        <main className="flex h-auto w-full ">
+
+        <main className={"flex h-screen w-full"}>
+
+        <div className="col-span-6 lg:col-span-4 lg:border-r">
           <section   className="
           hidden
           md:flex
           flex-col
           gap-y-4
-
           h-full
           w-[300px]
           p-4
         ">
 
             <Link href={"/"}>
-              <h2 className="pt-20">Home</h2>
+              <div className="px-3 py-4">
+                <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">
+                  Melodio World 🌍
+                </h2>
+              </div>
             </Link>
             <Separator className="my-4"/>
-            <h2>Explore</h2>
+            <Link href={"/explore"}>
+              <Button variant="ghost" className="w-full justify-start">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="mr-2 h-6 w-6"
+                >
+                  <path d="M21 15V6" />
+                  <path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                  <path d="M12 12H3" />
+                  <path d="M16 6H3" />
+                  <path d="M12 18H3" />
+                </svg>
+                Explore
+              </Button>
+            </Link>
             <Separator className="my-4"/>
             <Link href={"/favorites"}>
-              <h2>Favorites</h2>
-            </Link>
+              <Button variant="ghost" className="w-full justify-start">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="mr-4 h-6 w-6"
+                >
+                  <circle cx="8" cy="18" r="4" />
+                  <path d="M12 18V2l7 4" />
+                </svg>
+                Your Favorites
+              </Button> </Link>
             <Separator className="my-4"/>
-            <h2>Recommended</h2>
+            <Link href={"/recommended"}>
+              <Button variant="ghost" className="w-full justify-start">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="mr-4 h-6 w-6"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                Recommended
+              </Button>
+            </Link>
             <Separator className="my-4"/>
             <h2>About Us</h2>
           <Separator className="my-4"/>
           </section>
+        </div>
           <div className={"w-full"}>
             <div className="flex w-full max-w-xl mx-auto items-center space-x-2">
               <Input

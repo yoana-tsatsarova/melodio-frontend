@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { Session, SupabaseClient, createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
-import { Database } from './database.types'
+import { Database } from '../app/database.types'
 
 type MaybeSession = Session | null
 

@@ -72,6 +72,20 @@ const HeroSection = () => {
                 <h1 className={"text-center text-8xl font-bold text-slate-50 animate-focus-in-expand-fwd"}> Melodio 🌍</h1>
                 <p className={"animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em]  drop-shadow-sm"}>Helping you Explore the world through music</p>
             </div>
+            <div
+                className={"flex-grow-0 transition-all  mt-4  justify-center items-center flex animate-pulse relative " }>
+                <Image
+                    src="/images/arrow-down.svg"
+                    width={188 / 3}
+                    height={105 / 3}
+                    alt="scroll down"
+
+                    style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                    }} />
+            </div>
+
         </main>
     );
 }
