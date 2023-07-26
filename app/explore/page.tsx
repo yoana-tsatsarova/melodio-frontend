@@ -61,7 +61,7 @@ const Page = () => {
 
   const addSongToPlaylist = async (e: any, songId: string) => {
     e.preventDefault();
-    const url = "https://melodio.azurewebsites.net/addsong";
+    const url = "https://melodio.azurewebsites.net/songs/add";
     const data = {
       songId: songId,
     };
