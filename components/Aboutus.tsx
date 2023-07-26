@@ -54,8 +54,8 @@ const Aboutus = () => {
           <strong>Our Team</strong>
         </h2>
         <div className="mt-2"> the &ldquo;spec-ops&rdquo;</div>
-        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 lg:gap-20">
-        <Image src="/images/IMG_1387.jpg" alt="JaffaPuffs" />
+        <div className="justify-center flex mx-auto items-center mt-6">
+        <Image className={" shadow-2xl rounded-lg"} src="/images/IMG_1387.jpg" alt="JaffaPuffs" width={500} height={500} />
         </div>
       </div>
     </section>

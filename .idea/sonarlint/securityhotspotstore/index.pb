@@ -20,8 +20,6 @@ G
 .env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 B
 components/Box.tsx,e/a/ea1966bc6ee4db478f35f4cbe5bb644506b1a4fe
-F
-app/favorites/page.tsx,7/7/773caeb485fe9814a4b95ec19a1c598288c6036c
 >
 next.config.js,8/1/811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
 H

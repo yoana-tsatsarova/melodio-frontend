@@ -52,6 +52,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
             const url = `https://melodio.azurewebsites.net/favorites/${songId}`;
             await axios.delete(url);
             setSongIds(songIds?.filter((id) => id !== songId));
+            getFavorites();
             toast.success("Song deleted successfully!"); // Display the success toast
         } catch (error) {
             console.log(error);
@@ -92,7 +93,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
 
     return (
         <>
-  <main className={"flex h-screen w-full"}>
+  <main className={"flex w-full"}>
       <div className="col-span-6 lg:col-span-4 lg:border-r">
       <section   className="
           hidden
@@ -176,14 +177,14 @@ const FavoritesPage = ({session}: AccountFormProps) => {
       </section>
   </div>
       <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
-      <div className="grid grid-cols-3 gap-4 place-items-center mx-auto">
+      <div className="grid grid-cols-4 gap-4 place-items-center mx-auto">
           {songUrls?.map((songUrl) => (
-              <div key={songUrl} className="w-64">
+              <div key={songUrl} className={"group"}>
                   <iframe
-                      className="rounded-md py-4"
+                      className="rounded-md"
                       src={songUrl}
                       width="100%"
-                      height="352"
+                      height="270px"
                       frameBorder="0"
                       allowFullScreen={true}
                       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -192,16 +193,14 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                   <AlertDialog>
                       <AlertDialogTrigger asChild>
                           <Button
-                              className="bg-amber-700 text-white"
-                              onClick={(e) =>
-                                  deleteSongFromPlaylist(e, songIds[songUrls?.indexOf(songUrl)])
-                              }
+                              className="invisible group-hover:visible bg-amber-700 rounded-xl mx-auto mb-4 w-full flex hover:bg-slate-300 text-slate-50 -top-2 transition delay-7000 duration-800 ease-in-out"
+
                           >
                               Delete
 
                           </Button>
                       </AlertDialogTrigger>
-                      <AlertDialogContent>
+                      <AlertDialogContent className={"bg-stone-100"}>
                           <AlertDialogHeader>
                               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                               <AlertDialogDescription>
@@ -211,7 +210,9 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                           </AlertDialogHeader>
                           <AlertDialogFooter>
                               <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction>Continue</AlertDialogAction>
+                              <AlertDialogAction onClick={(e) =>
+                                  deleteSongFromPlaylist(e, songIds[songUrls?.indexOf(songUrl)])
+                              }>Continue</AlertDialogAction>
                           </AlertDialogFooter>
                       </AlertDialogContent>
                   </AlertDialog>
