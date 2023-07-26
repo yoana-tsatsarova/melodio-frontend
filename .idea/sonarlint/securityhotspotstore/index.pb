@@ -26,8 +26,6 @@ H
 app/recommended/page.tsx,8/6/86fb4ff57972572625430ec6195c11e3fa1e38da
 B
 app/login/page.tsx,e/f/ef6d8010637089bf88bdd08921e2d29ff2928fa4
-C
-app/login/Login.tsx,5/2/525c30fd130df947c5bd93c1f8397eb42f66fce2
 F
 app/account/avatar.tsx,3/1/31e8008c43d89cce15babeb36bc73d1f998fe090
 D
@@ -36,3 +34,13 @@ J
 app/auth/callback/route.ts,6/a/6a851a0fe0d28f8ae0d38985fd9e99dbbfcf3e1d
 O
 app/recommended/recommended.tsx,9/0/907392c82691a7bfda5c59faf6d5ac5dd48c95ec
+E
+components/Member.tsx,1/c/1cf8f68b2dd7e06a062ca0e1aff657331ced1288
+<
+app/page.tsx,6/f/6f76c4f4dad83442e836edc16c9735cb7bb32a73
+F
+components/Aboutus.tsx,7/e/7e1d46605bc16acb3c9ed75c9cf919d3d922dd7e
+F
+app/favorites/page.tsx,7/7/773caeb485fe9814a4b95ec19a1c598288c6036c
+B
+tailwind.config.js,0/9/0918cbb76f2c44f223706cec9d31a32cd1177ce4
