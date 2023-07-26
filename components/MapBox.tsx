@@ -57,11 +57,11 @@ const MapBox: React.FC<MapComponentProps> = ({ latitude = 52.3676, longitude = 4
             setTimeout(() => {
                 map.current?.flyTo({
                     center: [longitude, latitude],
-                    zoom: 8,
-                    speed: 0.6, // slower speed
+                    zoom: 7,
+                    speed: 0.8, // slower speed
                 });
                 setPrevLocation({lng: longitude, lat: latitude});
-            }, 4000);
+            }, 2000);
         }
     }, [longitude, latitude]);
 

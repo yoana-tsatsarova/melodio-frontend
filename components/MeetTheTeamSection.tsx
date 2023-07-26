@@ -43,7 +43,7 @@ interface TeamMemberProps {
 }
 
 const TeamMember: React.FC<TeamMemberProps> = ({ image, name, role, description, socials }) => (
-    <div className="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
+    <div className="items-center h-screen  bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
         <ImageLink {...image} />
         <div className="p-5">
             <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">

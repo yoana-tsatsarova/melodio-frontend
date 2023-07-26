@@ -7,8 +7,6 @@ M
 components/SpotifyProfile.tsx,3/b/3b067028ba4b11ec2b70abd586ed23b10f8c5071
 >
 types/types.ts,3/5/353ee6ebceb4d469d913e7558b730312d92d5199
-B
-tailwind.config.js,0/9/0918cbb76f2c44f223706cec9d31a32cd1177ce4
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 G
@@ -22,7 +20,21 @@ G
 .env,3/c/3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 B
 components/Box.tsx,e/a/ea1966bc6ee4db478f35f4cbe5bb644506b1a4fe
-Q
-!components/MeetTheTeamSection.tsx,7/0/704d0c156e6b44a4da5a2f6a097e6c68f34425d6
 F
 app/favorites/page.tsx,7/7/773caeb485fe9814a4b95ec19a1c598288c6036c
+H
+app/recommended/page.tsx,8/6/86fb4ff57972572625430ec6195c11e3fa1e38da
+>
+next.config.js,8/1/811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
+B
+app/login/page.tsx,e/f/ef6d8010637089bf88bdd08921e2d29ff2928fa4
+C
+app/login/Login.tsx,5/2/525c30fd130df947c5bd93c1f8397eb42f66fce2
+F
+app/account/avatar.tsx,3/1/31e8008c43d89cce15babeb36bc73d1f998fe090
+D
+app/account/page.tsx,7/f/7fac983c977657781f43bacb99912425e8f137b5
+J
+app/auth/callback/route.ts,6/a/6a851a0fe0d28f8ae0d38985fd9e99dbbfcf3e1d
+O
+app/recommended/recommended.tsx,9/0/907392c82691a7bfda5c59faf6d5ac5dd48c95ec

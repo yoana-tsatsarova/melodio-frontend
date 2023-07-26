@@ -190,14 +190,14 @@ const Page = () => {
             </div>
             <div>
               <div className="  p-4 overflow-auto">
-                <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
+                <div className="flex space-x-2 overscroll-auto">
                   {songUrls?.map((songUrl) => (
                       <div key={songUrl}>
                         <iframe
                             className="rounded-md"
                             src={songUrl}
                             width="100%"
-                            height="300"
+                            height="200px"
                             allowFullScreen={true}
                             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                             loading="lazy"

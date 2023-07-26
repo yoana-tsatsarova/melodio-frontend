@@ -1,7 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require("tailwindcss/colors");
+const { fontFamily } = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 module.exports = {
-  darkMode: ["class"],
+  darkMode: ["class", '[data-theme="dark"]'],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -17,6 +19,12 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+      },
+      height: {
+        "half-screen": "50vh",
+      },
       colors: {
         gray: colors.zinc,
         "gray-1000": "rgb(17,17,19)",
@@ -140,5 +148,14 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"),require('@tailwindcss/forms')],
+  plugins:  [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/line-clamp"),
+    plugin(({ addVariant }) => {
+      addVariant("radix-side-top", '&[data-side="top"]');
+      addVariant("radix-side-bottom", '&[data-side="bottom"]');
+    }),
+  ],
 }

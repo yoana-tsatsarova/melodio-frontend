@@ -1,7 +1,8 @@
 import HeroSection from "@/components/HeroSection";
-import Marquee from "react-fast-marquee";
-import MeetTheTeamSection from "@/components/MeetTheTeamSection";
-import Login from "@/app/Login";
+import Aboutus from "@/components/Aboutus";
+import Skills from "@/components/Skills";
+import Works from "@/components/Works";
+import TechUsed from "@/components/TechUsed";
 
 
 export default function Home() {
@@ -10,7 +11,11 @@ export default function Home() {
       <section>
 
         <HeroSection />
-          <MeetTheTeamSection />
+
+          <Aboutus />
+          <Skills />
+          <Works />
+          <TechUsed />
 
       </section>
     </>
