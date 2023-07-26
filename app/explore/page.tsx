@@ -81,10 +81,8 @@ const Page = () => {
     return (
         <>
             <ToastContainer autoClose={1200} theme={"dark"}/>
-
             <main className={"flex h-screen w-full"}>
-
-                <div className="col-span-6 lg:col-span-4 lg:border-r">
+                <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
                     <section className="
           hidden
           md:flex
@@ -94,7 +92,6 @@ const Page = () => {
           w-[300px]
           p-4
         ">
-
                         <Link href={"/"}>
                             <div className="px-3 py-4">
                                 <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">
@@ -102,7 +99,7 @@ const Page = () => {
                                 </h2>
                             </div>
                         </Link>
-                        <Separator className="my-4"/>
+                        <Separator className="my-4 border-stone-700"/>
                         <Link href={"/explore"}>
                             <Button variant="ghost" className="w-full justify-start">
                                 <svg
@@ -174,11 +171,12 @@ const Page = () => {
                             onChange={(e) => setCountry(e.target.value)}
                         />
                         <Button
-                            className="py-4 my-4"
+                            className="py-4 my-4 rounded-md "
                             type="submit"
                             onClick={getTopTenTracks}
+                            variant={"outline"}
                         >
-                            Add
+                            Explore
                         </Button>
                     </div>
                     <div className="w-full  ">
@@ -192,7 +190,7 @@ const Page = () => {
                     </div>
                     <div>
                         <div className="  p-4 overflow-auto">
-                            <Marquee pauseOnHover={true} >
+                            <Marquee pauseOnHover={true}>
                                 <div className="flex space-x-4 bg-gray-1000 px-1 rounded-md overscroll-auto gap-2">
                                     {songUrls?.map((songUrl) => (
                                         <div key={songUrl} className={"group"}>

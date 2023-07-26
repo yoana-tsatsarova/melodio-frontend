@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { Manrope as FontSans } from "next/font/google";
 import ScrollObserver from "@/lib/ScrollObserver";
 import {cn} from "@/lib/utils";
+import Navbar from "@/components/Navbar";
 // import Navbar from "@/components/Navbar";
 export const metadata = {
   title: "Melodio world of songs",
@@ -27,7 +28,7 @@ export default async function RootLayout({
           fontSans.variable
       )}>
 
-
+        <Navbar/>
         <main className="flex min-h-screen  items-center bg-gray-1100 text-stone-50">
 
           <ScrollObserver>{children}</ScrollObserver>

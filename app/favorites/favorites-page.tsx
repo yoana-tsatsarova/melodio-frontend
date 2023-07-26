@@ -181,7 +181,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
           {songUrls?.map((songUrl) => (
               <div key={songUrl} className={"group"}>
                   <iframe
-                      className="rounded-md"
+                      className="rounded-md -mb-6"
                       src={songUrl}
                       width="100%"
                       height="270px"
