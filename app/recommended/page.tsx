@@ -1,4 +1,4 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import {createClientComponentClient, createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { Database } from '../database.types'
 import Recommended from "@/app/recommended/recommended";
@@ -18,4 +18,3 @@ export default async function Page() {
     )
 
 }
-

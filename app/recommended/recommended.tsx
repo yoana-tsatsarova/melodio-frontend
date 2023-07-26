@@ -31,7 +31,7 @@ const Recommended = ({ session }: AccountFormProps) => {
 
     useEffect(() => {
         const token = session?.provider_token;
-
+        console.log(token)
         async function fetchWebApi<T>(endpoint: string, method: HttpMethod, body?: any): Promise<T> {
             const res = await axios(`https://api.spotify.com/${endpoint}`, {
                 headers: {
@@ -57,7 +57,7 @@ const Recommended = ({ session }: AccountFormProps) => {
             try {
                 const topTracks = await getTopTracks();
                 const topTracksIds: string[] = topTracks.map(track => track.id);
-
+                console.log(topTracksIds)
                 // Get recommended tracks based on top tracks
                 const recommendedTracks = await getRecommendations(topTracksIds);
                 const recommendedTracksIds: string[] = recommendedTracks.map(track => track.id);

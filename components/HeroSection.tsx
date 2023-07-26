@@ -74,16 +74,6 @@ const HeroSection = () => {
             </div>
             <div
                 className={"flex-grow-0 transition-all  mt-4  justify-center items-center flex animate-pulse relative " }>
-                <Image
-                    src="/images/arrow-down.svg"
-                    width={188 / 3}
-                    height={105 / 3}
-                    alt="scroll down"
-
-                    style={{
-                        maxWidth: "100%",
-                        height: "auto"
-                    }} />
             </div>
 
         </main>

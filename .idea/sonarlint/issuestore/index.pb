@@ -1,8 +1,6 @@
 
 O
 components/ui/dropdown-menu.tsx,b/5/b5394efa3658142b6dd75111a37f870f3a787a28
->
-next.config.js,8/1/811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
 H
 components/TopTracks.tsx,5/9/59981c395be9b60c66c3d03b2cf8d8e208e98996
 M
@@ -30,11 +28,5 @@ B
 components/Box.tsx,e/a/ea1966bc6ee4db478f35f4cbe5bb644506b1a4fe
 Q
 !components/MeetTheTeamSection.tsx,7/0/704d0c156e6b44a4da5a2f6a097e6c68f34425d6
-O
-app/recommended/recommended.tsx,9/0/907392c82691a7bfda5c59faf6d5ac5dd48c95ec
 F
 app/favorites/page.tsx,7/7/773caeb485fe9814a4b95ec19a1c598288c6036c
-H
-app/recommended/page.tsx,8/6/86fb4ff57972572625430ec6195c11e3fa1e38da
-O
-providers/supabase-provider.tsx,9/f/9f3e2c9605c864ad986f435a2f1d2183cde4c6b8
