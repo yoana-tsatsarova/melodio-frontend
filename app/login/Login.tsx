@@ -1,37 +1,34 @@
-'use client'
+import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
+import { revalidatePath } from 'next/cache'
+import { cookies } from 'next/headers'
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
-import {Database} from "@/types/supabase";
-import {Button} from "@/components/ui/button";
+export default async function Login() {
 
 
-export default function Login() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const router = useRouter()
-    const supabase = createClientComponentClient<Database>()
+    const handleSignIn = async (formData: FormData) => {
+        'use server'
 
 
-
-    async function signInWithSpotify() {
+        const supabase = createServerActionClient({ cookies })
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: 'spotify',
         })
-        router.refresh()
+
+        revalidatePath('/')
     }
 
-
     const handleSignOut = async () => {
+        'use server'
+        const supabase = createServerActionClient({ cookies })
         await supabase.auth.signOut()
-        router.refresh()
+        revalidatePath('/')
     }
 
     return (
-        <>
+        <form action={handleSignIn}>
 
-            <Button onClick={signInWithSpotify}>Sign in</Button>
-        </>
+            <button formAction={handleSignIn}>Sign in</button>
+            <button formAction={handleSignOut}>Sign out</button>
+        </form>
     )
 }
