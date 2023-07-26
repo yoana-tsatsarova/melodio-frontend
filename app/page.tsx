@@ -8,9 +8,10 @@ export default function Home() {
   return (
     <>
       <section>
-          <Login />
+
         <HeroSection />
           <MeetTheTeamSection />
+
       </section>
     </>
   );
