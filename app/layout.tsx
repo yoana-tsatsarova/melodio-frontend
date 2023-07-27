@@ -35,12 +35,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={cn(
-          "min-h-screen bg-gray-1100 font-sans bg-[url('/grid-2.svg')]  text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50 transition-all duration-500 ",
+          "min-h-screen bg-gray-1100 font-sans bg-[url('/grid-2.svg')]  text-slate-100 antialiased dark:bg-slate-900 dark:text-slate-50 transition-all duration-500 ",
           fontSans.variable
       )}>
 
       <Navbar session={session} />
-        <main className="flex min-h-screen w-screen  items-center bg-gray-1100 text-stone-50">
+        <main className="">
           <ScrollObserver>{children}</ScrollObserver>
           <Toaster />
         </main>

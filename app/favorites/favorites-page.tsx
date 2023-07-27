@@ -102,7 +102,9 @@ const FavoritesPage = ({session}: AccountFormProps) => {
 
     return (
         <>
-            <main className={"flex h-screen w-full"}>
+
+            <main>
+
                 <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
                     <section className="
       hidden
@@ -201,50 +203,52 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                     <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
 
                 </div>
-                {/*<Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>*/}
-                <div className="grid grid-cols-4 gap-4 place-items-center mx-auto">
-                    {songUrls?.map((songUrl) => (
-                        <div key={songUrl} className={"group"}>
-                            <iframe
-                                className="rounded-md -mb-6"
-                                src={songUrl}
-                                width="100%"
-                                height="270px"
-                                frameBorder="0"
-                                allowFullScreen={true}
-                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                                loading="lazy"
-                            ></iframe>
-                            <AlertDialog>
-                                <AlertDialogTrigger asChild>
-                                    <Button
-                                        className="invisible group-hover:visible bg-amber-700 rounded-xl mx-auto mb-4 w-full flex hover:bg-slate-300 text-slate-50 -top-2 transition delay-7000 duration-800 ease-in-out"
+               <div className={"pl-72"}> <div className={"flex flex-row justify-end  pt-4 pr-4"}> <Button className="bg-spotify-green rounded-xl  " onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button></div>
+                   <div className="grid grid-cols-3  gap-x-12 p-4 justify-items-center mx-auto">
 
-                                    >
-                                        Delete
+                       {songUrls?.map((songUrl) => (
+                           <div key={songUrl} className={"group"}>
+                               <iframe
+                                   className="rounded-md -mb-6"
+                                   src={songUrl}
+                                   width="100%"
+                                   height="270px"
+                                   frameBorder="0"
+                                   allowFullScreen={true}
+                                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                   loading="lazy"
+                               ></iframe>
+                               <AlertDialog>
+                                   <AlertDialogTrigger asChild>
+                                       <Button
+                                           className="invisible group-hover:visible bg-amber-700 rounded-xl mx-auto mb-4 w-full flex hover:bg-slate-300 text-slate-50 -top-2 transition delay-7000 duration-800 ease-in-out"
 
-                                    </Button>
-                                </AlertDialogTrigger>
-                                <AlertDialogContent className={"bg-stone-100"}>
-                                    <AlertDialogHeader>
-                                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                                        <AlertDialogDescription>
-                                            This action cannot be undone. This will permanently delete your
-                                            favorites and remove your songs from your playlist.
-                                        </AlertDialogDescription>
-                                    </AlertDialogHeader>
-                                    <AlertDialogFooter>
-                                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                        <AlertDialogAction onClick={(e) =>
-                                            deleteSongFromPlaylist(e, songIds[songUrls?.indexOf(songUrl)])
-                                        }>Continue</AlertDialogAction>
-                                    </AlertDialogFooter>
-                                </AlertDialogContent>
-                            </AlertDialog>
-                        </div>
-                    ))}
-                    <ToastContainer autoClose={1200} theme={"dark"} />
-                </div></main>
+                                       >
+                                           Delete
+
+                                       </Button>
+
+                                   </AlertDialogTrigger>
+                                   <AlertDialogContent className={"bg-stone-100"}>
+                                       <AlertDialogHeader>
+                                           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                           <AlertDialogDescription>
+                                               This action cannot be undone. This will permanently delete your
+                                               favorites and remove your songs from your playlist.
+                                           </AlertDialogDescription>
+                                       </AlertDialogHeader>
+                                       <AlertDialogFooter>
+                                           <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                           <AlertDialogAction onClick={(e) =>
+                                               deleteSongFromPlaylist(e, songIds[songUrls?.indexOf(songUrl)])
+                                           }>Continue</AlertDialogAction>
+                                       </AlertDialogFooter>
+                                   </AlertDialogContent>
+                               </AlertDialog>
+                           </div>
+                       ))}
+                       <ToastContainer autoClose={1200} theme={"dark"} />
+                   </div></div></main>
         </>
     );
 };

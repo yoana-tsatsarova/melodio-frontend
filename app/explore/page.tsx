@@ -180,7 +180,7 @@ const Page = () => {
                     <Input
                         className={"rounded-md"}
                         placeholder={"Enter a Country"}
-                        onChange={(e) => setCountry(e.target.value)}
+                        onChange={(e) => setCountry(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
                     />
                     <Button
                         className="px-9 my-2 h-9 rounded-md border-stone-700 hover:bg-spotify-green"

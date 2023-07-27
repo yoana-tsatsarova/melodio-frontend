@@ -84,7 +84,7 @@ const Navbar = ({ session }: { session: Session | null }) =>{
     return (
         <nav className=" border-b border-neutral-600 bg-gray-1100 text-stone-100">
             {/* Container */}
-            <div className="flex items-center  max-w-screen-2xl  justify-between flex-wrap  mx-auto p-4">
+            <div className="flex items-center  max-w-screen-3xl  justify-between flex-wrap  mx-auto p-4">
                 {/* Logo */}
                 <Link href={"/"} >
                     <div className="px-3 ">
