@@ -9,12 +9,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { User, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import {createClientComponentClient, Session} from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/types/supabase";
-import { Session } from "@supabase/supabase-js";
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import {Button} from "@/components/ui/button";
 
 // Define types for profile data
 type ProfileData = {
@@ -24,12 +24,12 @@ type ProfileData = {
     avatar_url: string | null;
 };
 
-// Define types for the props
-type NavbarProps = {
-    session?: Session | null;
-};
+interface AccountFormProps {
+    session: Session | null;
+}
 
-const Navbar = ({ session }: NavbarProps) => {
+
+const Navbar = ({ session }: { session: Session | null }) =>{
     // Create a supabase client
     const supabase = createClientComponentClient<Database>();
 
@@ -85,32 +85,15 @@ const Navbar = ({ session }: NavbarProps) => {
     return (
         <nav className="w-full border-b border-neutral-100 bg-gray-1100 text-stone-100">
             {/* Container */}
-            <div className="flex items-center justify-between w-full py-6 mx-auto max-w-7xl">
+            <div className="flex items-center justify-around w-full py-6 mx-auto max-w-7xl">
                 {/* Logo */}
-                <div className="px-3 py-4">
-                    <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">
-                        Melodio World 🌍
-                    </h2>
-                </div>
-            </Link>
-            <div className="flex-none gap-2">
-                <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="w-8 pl-3 rounded-full">
-                            <img className="object-fill" src="/images/carolina.jpg" />
-                        </div>
-                    </label>
-                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                        <li>
-                            <a className="justify-between">
-                                Profile
-                                <span className="badge">New</span>
-                            </a>
-                        </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
-                    </ul>
-                </div>
+                <Link href={"/"} >
+                    <div className="px-3 py-4">
+                        <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">
+                            Melodio World 🌍
+                        </h2>
+                    </div>
+                </Link>
                 {/* Avatar or Log In button */}
                 {session ? (
                     <DropdownMenu>
@@ -137,7 +120,7 @@ const Navbar = ({ session }: NavbarProps) => {
                         </DropdownMenuContent>
                     </DropdownMenu>
                 ) : (
-                    <button
+                    <Button
                         onClick={() => {
                             // Redirect to the login page
                             router.push("/login");
@@ -145,7 +128,7 @@ const Navbar = ({ session }: NavbarProps) => {
                         className="px-4 py-2 font-medium text-white bg-spotify-green rounded-md"
                     >
                         Log In
-                    </button>
+                    </Button>
                 )}
             </div>
         </nav>
