@@ -102,16 +102,17 @@ const Recommended = ({ session }: AccountFormProps) => {
 
     return (
         <>
-            <main>   <div className="col-span-6 lg:col-span-4 lg:border-r">
-                <section   className="
-          hidden
-          md:flex
-          flex-col
-          gap-y-4
-          h-full
-          w-[300px]
-          p-4
-        ">
+            <main className="flex h-screen w-auto">
+                <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
+                    <section className="
+      hidden
+      md:flex
+      flex-col
+      gap-y-4
+      h-full
+      w-[300px]
+      p-4
+    ">
                     <Link href={"/explore"}>
                         <Button variant="ghost" className="w-full justify-start">
                             <svg
@@ -196,16 +197,18 @@ const Recommended = ({ session }: AccountFormProps) => {
                     </div>
                 </section>
             </div>
-                <iframe
-                    title="Spotify Embed: Recommendation Playlist "
-                    src={playlistUrl}
-                    width="50%"
-                    height="100%"
-                    style={{ minHeight: '800px' }}
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                /></main>
+             </main>
+            <iframe
+                title="Spotify Embed: Recommendation Playlist "
+                src={playlistUrl}
+                width="50%"
+                height="100%"
+                style={{ minHeight: '600px' }}
+                frameBorder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                className={"mx-auto justify-center items-center flex rounded-2xl"}
+            />
         </>
     )
 }
