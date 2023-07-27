@@ -62,7 +62,6 @@ const FavoritesPage = ({session}: AccountFormProps) => {
         e.preventDefault();
         const url = `https://api.spotify.com/v1/users/${session?.user.user_metadata.provider_id}/playlists`;
         const accessToken = session?.provider_token;
-        console.log(session?.provider_token)// Replace this with your actual access token
 
         const playlistData = {
             name: 'Melodio Favorites',
@@ -77,28 +76,29 @@ const FavoritesPage = ({session}: AccountFormProps) => {
             },
         };
 
-        const response = await axios.post(url, playlistData, config);
-        const playlistId = response.data.id;
-        const trackUris = songIds.map(id => `spotify:track:${id}`);
-        console.log(trackUris);
+        try {
+            // Step 1: Create the playlist on Spotify
+            const response = await axios.post(url, playlistData, config);
+            const playlistId = response.data.id;
 
-        const apiUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+            // Step 2: Prepare an array of track URIs
+            const trackUris = songIds.map(id => `spotify:track:${id}`);
 
+            // Step 3: Add songs to the playlist
+            const apiUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+            const requestData = {
+                uris: trackUris,
+                position: 0,
+            };
 
-        const requestData = {
-            trackUris, // Replace 'string' with the actual URI you want to add to the playlist
-            position: 0,
-        };
+            await axios.post(apiUrl, requestData, config);
 
-        axios.post(apiUrl, requestData, config )
-            .then((response) => {
-                console.log('Successfully added track to playlist:', response.data);
-            })
-            .catch((error) => {
-                console.error('Error adding track to playlist:', error);
-            });
-
+            console.log('Successfully added tracks to playlist!');
+        } catch (error) {
+            console.error('Error adding tracks to playlist:', error);
+        }
     }
+
 
 
     return (
