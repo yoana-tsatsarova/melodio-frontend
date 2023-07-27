@@ -65,7 +65,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
         console.log(session?.provider_token)// Replace this with your actual access token
 
         const playlistData = {
-            name: {playlistName},
+            name: 'Melodio Favorites',
             description: 'Favorite songs from Melodio',
             public: false,
         };
@@ -91,7 +91,6 @@ const FavoritesPage = ({session}: AccountFormProps) => {
 
     return (
         <>
-            <input onChange={(e) => setPlaylistName(e.target.value)}/>
             <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
             <main className={"flex h-screen w-full"}>
                 <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
