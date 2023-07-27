@@ -26,7 +26,5 @@ F
 components/Aboutus.tsx,7/e/7e1d46605bc16acb3c9ed75c9cf919d3d922dd7e
 F
 app/favorites/page.tsx,7/7/773caeb485fe9814a4b95ec19a1c598288c6036c
-B
-tailwind.config.js,0/9/0918cbb76f2c44f223706cec9d31a32cd1177ce4
 E
 components/Member.tsx,1/c/1cf8f68b2dd7e06a062ca0e1aff657331ced1288

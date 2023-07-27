@@ -3,7 +3,7 @@ const colors = require("tailwindcss/colors");
 const { fontFamily } = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
 module.exports = {
-  darkMode: ["class", '[data-theme="dark"]'],
+  darkMode: ["class", '[data-theme="light"]'],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
