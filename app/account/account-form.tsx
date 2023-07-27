@@ -1,19 +1,13 @@
 "use client";
-import { useCallback, useEffect, useState } from 'react';
-import Avatar from './avatar';
-import { Database } from '../database.types';
-import { createClientComponentClient, Session } from '@supabase/auth-helpers-nextjs';
-import { Button } from "@/components/ui/button";
+import { useCallback, useEffect, useState } from "react";
+import Avatar from "./avatar";
+import { Database } from "../database.types";
+import {
+    createClientComponentClient,
+    Session,
+} from "@supabase/auth-helpers-nextjs";
 
-import TopTracks from '@/components/TopTracks';
-import SpotifyProfile from "@/components/SpotifyProfile";
-import {SpotifyProfileType, SpotifyTrack} from "@/types/types";
-
-interface AccountFormProps {
-    session: Session | null;
-}
-
-export default function AccountForm({ session }: AccountFormProps) {
+export default function AccountForm({ session }: { session: Session | null }) {
     const supabase = createClientComponentClient<Database>();
     const [loading, setLoading] = useState(true);
     const [fullname, setFullname] = useState<string | null>(null);
@@ -21,61 +15,19 @@ export default function AccountForm({ session }: AccountFormProps) {
     const [website, setWebsite] = useState<string | null>(null);
     const [avatar_url, setAvatarUrl] = useState<string | null>(null);
     const user = session?.user;
-    const token = session?.provider_token;
-    const [spotifyProfile, setSpotifyProfile] = useState<SpotifyProfileType | null>(null);
-    const [topTracks, setTopTracks] = useState<SpotifyTrack[] | null>(null);
-
-    async function fetchWebApi(endpoint: string, method: string, body?: any) {
-        const res = await fetch(`https://api.spotify.com/${endpoint}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-            method,
-            body: JSON.stringify(body)
-        });
-        const data = await res.json(); // read once and store it
-        console.log(`Response Status: ${res.status}`);
-        console.log(`Response Data:`, data);
-
-        return data;
-    }
-
-
-    // async function getTopTracks(){
-    //     const results = await fetchWebApi('v1/me/top/tracks?limit=5', 'GET');
-    //     console.log(results);  // Add this line to log the data
-    //     return results.items as SpotifyTrack[];
-    // }
-
-    async function getUserProfile() {
-        return await fetchWebApi('v1/me', 'GET') as SpotifyProfileType;
-    }
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const userProfile = await getUserProfile();
-            setSpotifyProfile(userProfile);
-            // const userTopTracks = await getTopTracks();
-            // setTopTracks(userTopTracks);
-            // console.log(userTopTracks);
-        };
-
-        fetchData();
-        console.log("spotifyProfile: ", spotifyProfile?.id)
-    }, []);
 
     const getProfile = useCallback(async () => {
         try {
             setLoading(true);
 
             let { data, error, status } = await supabase
-                .from('profiles')
+                .from("profiles")
                 .select(`full_name, username, website, avatar_url`)
-                .eq('id', user?.id)
+                .eq("id", user?.id)
                 .single();
 
             if (error && status !== 406) {
-                console.log(error);
+                throw error;
             }
 
             if (data) {
@@ -85,15 +37,15 @@ export default function AccountForm({ session }: AccountFormProps) {
                 setAvatarUrl(data.avatar_url);
             }
         } catch (error) {
-            alert('Error loading user data!');
+            alert("Error loading user data!");
         } finally {
             setLoading(false);
         }
     }, [user, supabase]);
 
-    // useEffect(() => {
-    //     getProfile();
-    // }, [user, getProfile]);
+    useEffect(() => {
+        getProfile();
+    }, [user, getProfile]);
 
     async function updateProfile({
                                      username,
@@ -108,7 +60,7 @@ export default function AccountForm({ session }: AccountFormProps) {
         try {
             setLoading(true);
 
-            let { error } = await supabase.from('profiles').upsert({
+            let { error } = await supabase.from("profiles").upsert({
                 id: user?.id as string,
                 full_name: fullname,
                 username,
@@ -116,17 +68,17 @@ export default function AccountForm({ session }: AccountFormProps) {
                 avatar_url,
                 updated_at: new Date().toISOString(),
             });
-            if (error) error;
-            alert('Profile updated!');
+            if (error) throw error;
+            alert("Profile updated!");
         } catch (error) {
-            alert('Error updating the data!');
+            alert("Error updating the data!");
         } finally {
             setLoading(false);
         }
     }
 
     return (
-        <div className='container mx-auto flex flex-col items-center justify-center space-y-4 rounded-lg border border-gray-300 p-8'>
+        <div className="form-widget">
             <Avatar
                 uid={user!.id}
                 url={avatar_url}
@@ -136,24 +88,61 @@ export default function AccountForm({ session }: AccountFormProps) {
                     updateProfile({ fullname, username, website, avatar_url: url });
                 }}
             />
-            <h2 className='w-1/4 text-center text-lg font-medium'>
-                User Metadata: {user?.user_metadata?.provider_id}
-            </h2>
+            <h2>User Metadata: {user?.user_metadata?.provider_id}</h2>
 
-            <p className='text-center text-lg font-medium'>
-                Session: {JSON.stringify(session?.provider_token)}
-            </p>
-            <SpotifyProfile profile={spotifyProfile} />
-            <TopTracks tracks={topTracks} />
+            <h2>Session: {JSON.stringify(session)}</h2>
 
-            <form action="/auth/signout" method="post">
-                <Button
-                    className="w-full rounded bg-red-500 py-2 text-white"
-                    type="submit"
+            <div>
+                <label htmlFor="email">Email</label>
+                <input id="email" type="text" value={session?.user.email} disabled />
+            </div>
+            <div>
+                <label htmlFor="fullName">Full Name</label>
+                <input
+                    id="fullName"
+                    type="text"
+                    value={fullname || ""}
+                    onChange={(e) => setFullname(e.target.value)}
+                />
+            </div>
+            <div>
+                <label htmlFor="username">Username</label>
+                <input
+                    id="username"
+                    type="text"
+                    value={username || ""}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+            </div>
+            <div>
+                <label htmlFor="website">Website</label>
+                <input
+                    id="website"
+                    type="url"
+                    value={website || ""}
+                    onChange={(e) => setWebsite(e.target.value)}
+                />
+            </div>
+
+            <div>
+                <button
+                    className="button primary block"
+                    onClick={() =>
+                        updateProfile({ fullname, username, website, avatar_url })
+                    }
+                    disabled={loading}
                 >
-                    Sign out
-                </Button>
-            </form>
+                    {loading ? "Loading ..." : "Update"}
+                </button>
+            </div>
+
+            <div>
+                <form action="/auth/signout" method="post">
+                    <button className="button block" type="submit">
+                        Sign out
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }
