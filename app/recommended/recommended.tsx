@@ -112,15 +112,6 @@ const Recommended = ({ session }: AccountFormProps) => {
           w-[300px]
           p-4
         ">
-
-                    <Link href={"/"}>
-                        <div className="px-3 py-4">
-                            <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">
-                                Melodio World 🌍
-                            </h2>
-                        </div>
-                    </Link>
-                    <Separator className="my-4"/>
                     <Link href={"/explore"}>
                         <Button variant="ghost" className="w-full justify-start">
                             <svg
@@ -180,8 +171,29 @@ const Recommended = ({ session }: AccountFormProps) => {
                         </Button>
                     </Link>
                     <Separator className="my-4"/>
-                    <h2>About Us</h2>
-                    <Separator className="my-4"/>
+                    <img src="/images/JavaPuffs_logo_black-removebg-preview%20(1).png"/>
+                    <div className="avatar-group -space-x-6">
+                        <div className="avatar border-none">
+                            <div className="w-24 rounded-full">
+                                <img src="/images/carolina.jpg" />
+                            </div>
+                        </div>
+                        <div className="avatar border-none">
+                            <div className="w-24 rounded-full">
+                                <img src="/images/togrul.jpg" />
+                            </div>
+                        </div>
+                        <div className="avatar border-none">
+                            <div className="w-24 rounded-full">
+                                <img src="/images/yoana.jpg" />
+                            </div>
+                        </div>
+                        <div className="avatar border-none">
+                            <div className="w-24 rounded-full">
+                                <img src="/images/ryan.webp" />
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
                 <iframe
