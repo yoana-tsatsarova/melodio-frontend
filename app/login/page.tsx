@@ -11,5 +11,15 @@ export default async function Login() {
         data: { session },
     } = await supabase.auth.getSession()
 
-    return <LoginForm session={session} />
+    return (
+        <>
+            <div className="grid w-full h-screen grid-cols-2">
+            <LoginForm session={session} />
+
+            <div className="border-l-2 bg-gradient-to-r from-emerald-300 to-emerald-700 border-emerald-500" />
+                <h1>     Melodio World 🌍</h1>
+        </div>
+
+        </>
+    )
 }

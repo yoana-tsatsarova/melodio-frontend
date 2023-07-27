@@ -13,7 +13,7 @@ export default function LoginForm({ session }: { session: Session | null }) {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: "spotify",
             options: {
-                redirectTo: "localhost:3000/callback",
+                redirectTo: "https://roovhggcmqbknwqzjyrv.supabase.co/auth/v1/callback",
                 scopes:
                     "user-read-playback-state user-modify-playback-state user-read-currently-playing playlist-read-private playlist-modify-private user-read-playback-position user-top-read",
             },
@@ -23,7 +23,7 @@ export default function LoginForm({ session }: { session: Session | null }) {
 
 
     return (
-        <div className="flex flex-col mx-auto items-center justify-center min-h-screen py-2 px-4 sm:px-0">
+        <div className="flex flex-col  items-center justify-center min-h-screen py-2 px-4 sm:px-0">
             <div className="flex items-center justify-center w-full h-full">
                 <div className="w-full max-w-lg">
                     <div>
@@ -36,7 +36,7 @@ export default function LoginForm({ session }: { session: Session | null }) {
                             Please login your account by email or the Spotify account.
                         </p>
                     </div>
-                    <div className={"flex items-center justify-center"}>
+                    <div className={"flex  mt-4 justify-center"}>
                         <Button
                             className=" w-full md:w-1/2 gap-2 mt-4 bg-gray-950 hover:bg-gray-600 text-stone-50 font-semibold rounded shadow shadow-spotify-green "
                             onClick={signInWithSpotify}
