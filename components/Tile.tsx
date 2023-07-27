@@ -27,43 +27,36 @@ const components: Components = {
     <WorkContainer>
       <WorkLeft progress={progress}>
 
-          <h1 className="mb-8 pl-5 font-mono">Yoana Tsatsarova</h1>
+          <h1 className="text-stone-400 mb-8 pl-7 font-mono">Yoana Tsatsarova</h1>
           <Balancer>
-        <p className="text-4xl font-mono md:text-2xl max-w-2xl container text-stone-300">
+        <p className="text-4xl font-mono md:text-2xl max-w-2xl container text-stone-500">
             Hey there, I'm Yoana, a 20-year-old who's all about fun and learning! Programming is like an awesome game to me - I love solving problems and getting that sweet sense of achievement. Besides coding, I'm into reading, singing, dancing, and MUSIC! I'm always up for new challenges and working with others to achieve cool stuff together 🎤 🎼 📖
         </p>
 
           </Balancer>
       </WorkLeft>
       <WorkRight progress={progress}>
-        <Image
-          width={840}
-          height={1620}
-          src="/images/yoana.jpg"
-          alt="Awesome Project 1"
-          sizes="100vw"
-          style={{
-            width: "100%",
-            height: "auto",
-          }}
-        />
+          <div className="flex justify-center">
+              <Image className=" rounded-xl shadow-2xl"
+                  width={840}
+                  height={1620}
+                  src="/images/yoana.jpg"
+                  alt="Awesome Project 1"
+                  sizes="100vw"
+                  style={{
+                      width: "fit-content",
+                      height: "auto",
+                  }}
+              />
+          </div>
       </WorkRight>
     </WorkContainer>
   ),
   Togrul: ({ progress }) => (
     <WorkContainer>
-        <WorkLeft progress={progress}>
-
-            <h1 className="text-stone-400 mb-8 pl-7 font-mono">Togrul Hasanbeyli</h1>
-            <Balancer>
-                <p className="text-4xl font-mono md:text-2xl max-w-2xl container text-stone-500">
-                    I am a Fullstack Java Developer 👨🏽‍💻 with a professional background in Environmental Engineering 👷🏽‍♂️. During my early years,  I am travelling a lot with my photography passion and meanwhile I am  tasting traditional foods,  I can not cook you a food but i can cook you something nice with coding 👨🏽‍🍳.
-                </p>
-
-            </Balancer>
-        </WorkLeft>
       <WorkRight progress={progress}>
-        <Image
+
+        <Image className=" rounded-xl shadow-2xl"
           width={840}
           height={1620}
           src="/images/togrul.jpg"
@@ -75,25 +68,33 @@ const components: Components = {
           }}
         />
       </WorkRight>
+        <WorkLeft progress={progress}>
+            <h1 className="text-stone-400 mb-8 pl-7 font-mono">Togrul Hasanbeyli</h1>
+            <Balancer>
+                <p className="text-4xl font-mono md:text-2xl max-w-2xl container text-stone-500">
+                    I am a Fullstack Java Developer 👨🏽‍💻 with a professional background in Environmental Engineering 👷🏽‍♂️. I am travelling a lot with my photography passion and meanwhile I am  tasting traditional foods,  I can not cook you a food but i can cook you something nice with coding 👨🏽‍🍳.
+                </p>
+
+            </Balancer>
+        </WorkLeft>
     </WorkContainer>
   ),
   Carolina: ({ progress }) => (
     <WorkContainer>
         <WorkLeft progress={progress}>
 
-            <h1 className="mb-8 pl-5 font-mono">Yoana Tsatsarova</h1>
+            <h1 className="text-stone-400 mb-8 pl-7 font-mono">Carolina Nichita</h1>
             <Balancer>
-                <p className="text-4xl font-mono md:text-2xl max-w-2xl container text-stone-300">
-                    Hey there, I'm Yoana, a 20-year-old who's all about fun and learning! Programming is like an awesome game to me - I love solving problems and getting that sweet sense of achievement. Besides coding, I'm into reading, singing, dancing, and MUSIC! I'm always up for new challenges and working with others to achieve cool stuff together 🎤 🎼 📖
-                </p>
-
+                <p className="text-4xl font-mono md:text-2xl max-w-2xl container text-stone-500">
+                    Experienced Java Full-Stack Developer with an accountancy background and valuable internship experience at SALT.  My work on diverse projects honed my problem-solving skills and deepened my understanding of software development.
+                    Driven by a passion for learning and embracing new technologies. I thrive in dynamic and collaborative environments. Beyond my career, I am a devoted parent to my two daughters 👩‍👧‍👧, whose journey has enriched my growth as a developer 👩🏽‍💻.</p>
             </Balancer>
         </WorkLeft>
       <WorkRight progress={progress}>
-        <Image
+        <Image className=" rounded-xl shadow-2xl"
           width={840}
           height={1620}
-          src="/bg-ryan-1.png"
+          src="/images/carolina.jpg"
           alt="Awesome Project 3"
           sizes="100vw"
           style={{
@@ -106,21 +107,11 @@ const components: Components = {
   ),
     Ryan: ({ progress }) => (
         <WorkContainer>
-            <WorkLeft progress={progress}>
-
-                <h1 className="mb-8 pl-5 font-mono">Yoana Tsatsarova</h1>
-                <Balancer>
-                    <p className="text-4xl font-mono md:text-2xl max-w-2xl container text-stone-300">
-                        Hey there, I'm Yoana, a 20-year-old who's all about fun and learning! Programming is like an awesome game to me - I love solving problems and getting that sweet sense of achievement. Besides coding, I'm into reading, singing, dancing, and MUSIC! I'm always up for new challenges and working with others to achieve cool stuff together 🎤 🎼 📖
-                    </p>
-
-                </Balancer>
-            </WorkLeft>
             <WorkRight progress={progress}>
-                <Image
+                <Image className=" rounded-xl shadow-2xl"
                     width={840}
                     height={1620}
-                    src="/bg-ryan-1.png"
+                    src="/images/ryan.webp"
                     alt="Awesome Project 3"
                     sizes="100vw"
                     style={{
@@ -129,6 +120,20 @@ const components: Components = {
                     }}
                 />
             </WorkRight>
+            <WorkLeft progress={progress}>
+                <h1 className="text-stone-500 mb-8 pl-7 font-mono">Ryan Lisse</h1>
+                <Balancer>
+                    <p className="text-4xl font-mono md:text-2xl max-w-2xl container text-stone-500">
+                        👋 Hi, I’m @RyanLisse
+                        🏆 I’m a creative, marketer and a full-stack developer
+                        Currently working as Software Consultant @Salt
+                        👨🏾‍🦱👩🏾🐶 Proud father of two kids and a dog
+                        🇳🇱 Born in Amsterdam roots from Suriname 🇸🇷
+                        👩🏾‍🦱 My Mom Was teaching Computer Basics BEFORE the Internet Was A Thing....
+                        🎹 With 20+ years of experience in the music and entertainment scene
+                    </p>
+                </Balancer>
+            </WorkLeft>
         </WorkContainer>
     ),
 };
