@@ -26,12 +26,8 @@ H
 app/recommended/page.tsx,8/6/86fb4ff57972572625430ec6195c11e3fa1e38da
 F
 app/account/avatar.tsx,3/1/31e8008c43d89cce15babeb36bc73d1f998fe090
-D
-app/account/page.tsx,7/f/7fac983c977657781f43bacb99912425e8f137b5
 J
 app/auth/callback/route.ts,6/a/6a851a0fe0d28f8ae0d38985fd9e99dbbfcf3e1d
-O
-app/recommended/recommended.tsx,9/0/907392c82691a7bfda5c59faf6d5ac5dd48c95ec
 E
 components/Member.tsx,1/c/1cf8f68b2dd7e06a062ca0e1aff657331ced1288
 <
