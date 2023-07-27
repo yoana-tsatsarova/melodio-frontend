@@ -6,14 +6,14 @@ const Aboutus = () => {
   const router = useRouter();
   return (
     <section
-      className={`flex flex-col  mx-auto justify-center items-center bg-gray-900 text-gray-100 md:text-4xl text-3xl`}>
-      <div className="container mx-auto px-11 text-center py-12">
-        <h2>
-          <strong>Technologies</strong>
+      className={`flex flex-col h-half-screen  mx-auto justify-center items-center bg-gray-900 text-gray-100 md:text-4xl text-3xl`}>
+      <div className="container mx-auto px-11 text-center py-14">
+        <h2 >
+          <strong className="mb-4">Technologies</strong>
         </h2>
         <Button onClick={() => {
           // Redirect to the login page
-          router.push("/explore")} } variant={"outline"} className="w-40 shadow py-4 hover:text-gray-700 justify-center text-stone-100 rounded-xl mx-auto my-4 flex hover:bg-slate-300  -top-2 transition delay-7000 duration-800 ease-in-out">
+          router.push("/explore")} } variant={"outline"} className="w-40 shadow py-4 hover:text-gray-700 font-semibold justify-center text-spotify-green rounded-xl mx-auto my-8 flex hover:bg-slate-300   transition delay-100 duration-300 ease-in-out">
           Explore
         </Button>
         <div className="mt-10 grid grid-cols-5 md:grid-cols-5 lg:grid-cols-8 xl:grid-cols-9 gap-6 lg:gap-20">

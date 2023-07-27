@@ -40,12 +40,12 @@ export default async function RootLayout({
     return (
         <html lang="en">
         <body className={cn(
-            "h-screen bg-gray-1100 font-sans  text-slate-100 antialiased dark:bg-slate-900 dark:text-slate-50 transition-all duration-500 ",
+            "h-screen bg-gray-1100 font-sans  no-scrollbar text-slate-100 antialiased dark:bg-slate-900 dark:text-slate-50 transition-all duration-500 ",
             fontSans.variable,incosolata.variable
         )}>
 
         <Navbar session={session} />
-        <main className="no-scrollbar">
+        <main className="bg-gray-1100">
             <ScrollObserver>{children}</ScrollObserver>
             <Toaster />
         </main>

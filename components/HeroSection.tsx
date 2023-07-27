@@ -56,7 +56,9 @@ const router = useRouter();
         }
     }
 
-    return (
+    return (<div className="h-fit" >
+
+
         <main onMouseMove={(e) => {manageMouseMove(e)}} className={styles.main}>
             <div ref={plane1} className={styles.plane}>
                 <Image src={floating6} alt='image' width={300} />
@@ -73,7 +75,7 @@ const router = useRouter();
                 <Image src={floating2} alt='image' width={150} />
             </div>
             <div className={styles.title}>
-                <h1 className={"text-center text-8xl font-bold font--ins  text-slate-50 animate-focus-in-expand-fwd"}> Melodio 🌍</h1>
+                <h1 className={"text-center text-8xl font-bold font-sans text-slate-50 animate-focus-in-expand-fwd"}> Melodio 🌍</h1>
                 <p className={"animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em]  drop-shadow-sm"}>Explore the world through music</p>
 
                     <Button onClick={() => {
@@ -87,6 +89,7 @@ const router = useRouter();
                 className={"flex-grow-0 transition-all  mt-4  justify-center items-center flex animate-pulse relative " }>
             </div>
         </main>
+        </div>
     );
 }
 

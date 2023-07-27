@@ -1,6 +1,4 @@
 
-M
-components/SpotifyProfile.tsx,3/b/3b067028ba4b11ec2b70abd586ed23b10f8c5071
 H
 components/TopTracks.tsx,5/9/59981c395be9b60c66c3d03b2cf8d8e208e98996
 >

@@ -17,58 +17,41 @@ import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import {useSession} from "@/providers/supabase-provider";
 
-// Define types for profile data
-type ProfileData = {
-    full_name: string | null;
-    username: string | null;
-    avatar_url: string | null;
-};
-
 interface AccountFormProps {
     session: Session | null;
 }
 
-
-const Navbar = ({session}: { session: Session | null }) => {
-    // Create a supabase client
+export default function Navbar({session}: AccountFormProps) {
     const supabase = createClientComponentClient<Database>();
-
-    // State to manage user data and loading state
-    const [loading, setLoading] = useState(true);
-    const [profileData, setProfileData] = useState<ProfileData | null>(null);
-
     const user = session?.user;
+    const token = session?.provider_token;
+    const [spotifyAvatarUrl, setSpotifyAvatarUrl] = useState<string | null>(null);
 
-    // Function to fetch and update profile data
-    const getProfile = useCallback(async () => {
-        try {
-            setLoading(true);
+    async function fetchWebApi(endpoint: string, method: string, body?: any) {
+        const res = await fetch(`https://api.spotify.com/${endpoint}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            method,
+            body: JSON.stringify(body)
+        });
+        const data = await res.json();
 
-            const {data} = await supabase
-                .from('profiles')
-                .select(`full_name, username, avatar_url`)
-                .eq('id', user?.id)
-                .single();
+        return data;
+    }
 
-            if (data) {
-                setProfileData(data);
-            }
-
-            console.log(session)
-            console.log("Success")
-        } catch (error) {
-            console.log(session)
-            alert('Error loading user data!');
-        } finally {
-            setLoading(false);
-        }
-    }, [user, supabase]);
+    async function getUserProfile() {
+        const profileData = await fetchWebApi('v1/me', 'GET');
+        setSpotifyAvatarUrl(profileData.images[0].url);
+    }
 
     useEffect(() => {
-        if (user) {
-            getProfile();
+        if (user && token) {
+            getUserProfile();
         }
-    }, [user, getProfile]);
+    }, [user, token]);
+
+
 
     // Function to handle user sign-out
     const signOut = async () => {
@@ -98,9 +81,9 @@ const Navbar = ({session}: { session: Session | null }) => {
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Avatar>
-                                <AvatarImage src={user?.app_metadata.avatar_url ?? ""} alt="@shadcn"/>
+                                <AvatarImage src={spotifyAvatarUrl ?? ""} alt="@shadcn"/>
                                 <AvatarFallback className={"text-gray-900"}>
-                                    {profileData?.full_name?.charAt(0).toUpperCase() ?? "M"}
+                                    {user?.email?.charAt(0).toUpperCase() ?? "M"}
                                 </AvatarFallback>
                             </Avatar>
                         </DropdownMenuTrigger>
@@ -128,7 +111,7 @@ const Navbar = ({session}: { session: Session | null }) => {
                     }}>Login</Button>
                 )}
             </div>
-            <div className="flex items-center justify-center space-x-4 text-sm px-4 py-2 block text-gray-100  md:hidden ">
+            <div className="flex items-center justify-center space-x-4 text-sm px-4 py-2  text-gray-100  md:hidden ">
                 <Link className="hover:text-gray-600 font-semibold hover:bg-spotify-green px-4 rounded" href="/explore">
                     Explore
                 </Link>
@@ -142,5 +125,3 @@ const Navbar = ({session}: { session: Session | null }) => {
         </nav>
     );
 };
-
-export default Navbar;
