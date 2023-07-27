@@ -13,7 +13,7 @@ export default async function Login() {
 
     return (
         <>
-            <div className="grid w-full h-screen grid-cols-2">
+            <div className="grid w-full h-screen grid-cols-1 md:grid-cols-2">
             <LoginForm session={session} />
 
             <div className="border-l-2 bg-gradient-to-r from-emerald-300 to-emerald-700 border-emerald-500" >

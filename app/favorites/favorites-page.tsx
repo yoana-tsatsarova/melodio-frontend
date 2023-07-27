@@ -104,7 +104,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
     return (
         <>
 
-            <main>
+            <main className={"flex "}>
 
                 <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
                     <section className="
@@ -201,10 +201,10 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                             </div>
                         </div>
                     </section>
-                    <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
+
 
                 </div>
-               <div className={"pl-72"}> <div className={"flex flex-row justify-end  pt-4 pr-4"}> <Button className="bg-spotify-green rounded-xl  " onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button></div>
+               <div className={"justify-center mx-auto w-max items-center"}> <div className={"flex flex-row justify-end  pt-4 pr-4"}> <Button className="bg-spotify-green rounded-xl  " onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button></div>
                    <div className="grid grid-cols-3  gap-x-12 p-4 justify-items-center mx-auto">
 
                        {songUrls?.map((songUrl) => (

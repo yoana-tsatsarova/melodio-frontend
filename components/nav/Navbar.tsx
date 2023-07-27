@@ -15,6 +15,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
+import {useSession} from "@/providers/supabase-provider";
 
 // Define types for profile data
 type ProfileData = {
@@ -80,7 +81,6 @@ const Navbar = ({ session }: { session: Session | null }) =>{
 
     // Create a reference to Next.js router
     const router = useRouter();
-
     return (
         <nav className=" border-b border-neutral-600 bg-gray-1100 text-stone-100">
             {/* Container */}
@@ -98,7 +98,7 @@ const Navbar = ({ session }: { session: Session | null }) =>{
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Avatar>
-                                <AvatarImage src={profileData?.avatar_url ?? ""} alt="@shadcn" />
+                                <AvatarImage src={user?.app_metadata.avatar_url ?? ""} alt="@shadcn" />
                                 <AvatarFallback className={"text-gray-900"}>
                                     {profileData?.full_name?.charAt(0).toUpperCase() ?? "M"}
                                 </AvatarFallback>

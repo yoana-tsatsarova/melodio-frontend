@@ -37,7 +37,19 @@ export default function SupabaseProvider({
       subscription.unsubscribe()
     }
   }, [router, supabase, session])
-
+  const getUser = async () => {
+    const { data: user, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", useSession()?.user?.id)
+        .single();
+    if (error) {
+      console.log(error);
+      return null;
+    } else {
+      return user;
+    }
+  };
   return (
       <Context.Provider value={{ supabase, session }}>
         <>{children}</>

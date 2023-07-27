@@ -91,9 +91,9 @@ export default function AccountForm({ session }: AccountFormProps) {
         }
     }, [user, supabase]);
 
-    // useEffect(() => {
-    //     getProfile();
-    // }, [user, getProfile]);
+    useEffect(() => {
+        getProfile();
+    }, [user, getProfile]);
 
     async function updateProfile({
                                      username,
