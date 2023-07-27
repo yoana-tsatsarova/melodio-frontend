@@ -230,7 +230,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                                        </Button>
 
                                    </AlertDialogTrigger>
-                                   <AlertDialogContent className={"bg-stone-100"}>
+                                   <AlertDialogContent className={"bg-stone-900"}>
                                        <AlertDialogHeader>
                                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                                            <AlertDialogDescription>
@@ -240,7 +240,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                                        </AlertDialogHeader>
                                        <AlertDialogFooter>
                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                           <AlertDialogAction onClick={(e) =>
+                                           <AlertDialogAction className={"text-spotify-green"} onClick={(e) =>
                                                deleteSongFromPlaylist(e, songIds[songUrls?.indexOf(songUrl)])
                                            }>Continue</AlertDialogAction>
                                        </AlertDialogFooter>

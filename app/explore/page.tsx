@@ -80,7 +80,7 @@ const Page = () => {
 
     return <>
         <ToastContainer autoClose={1200} theme={"dark"}/>
-        <main className={"flex h-screen w-full"}>
+        <main className={"flex  w-full"}>
             <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
                 <section className="
       hidden
@@ -177,19 +177,21 @@ const Page = () => {
             </div>
             <div className="w-full overflow-hidden">
                 <div className="flex w-full max-w-xl mx-auto items-center space-x-2">
-                    <Input
-                        className={"rounded-md"}
-                        placeholder={"Enter a Country"}
-                        onChange={(e) => setCountry(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
-                    />
-                    <Button
-                        className="px-9 my-2 h-9 rounded-md border-stone-700 hover:bg-spotify-green"
-                        type="submit"
-                        onClick={getTopTenTracks}
-                        variant={"outline"}
-                    >
-                        Explore
-                    </Button>
+                    <form   className={"rounded-md flex space-x-2 items-center justify-center"} onSubmit={(e) => { getTopTenTracks(e); }}>
+                        <Input
+                            className={"rounded-md w-80"}
+                            placeholder={"Enter a Country"}
+                            onChange={(e) => setCountry(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
+                        />
+                        <Button
+                            className="px-9 my-2 h-9 rounded-md border-stone-700 hover:bg-spotify-green"
+                            type="submit"
+                            variant={"outline"}
+                        >
+                            Explore
+                        </Button>
+                    </form>
+
                 </div>
                 <div className="w-auto overflow-hidden">
                     <div>
@@ -208,7 +210,7 @@ const Page = () => {
                                     <div key={songUrl} className={"group"}>
 
                                         <iframe
-                                            className="rounded-md -mb-8 overflow-hidden max-h-[270px]"
+                                            className="rounded-md -mb-8 overflow-hidden max-h-[260px]"
                                             src={songUrl}
                                             height="270px"
                                             allowFullScreen={true}

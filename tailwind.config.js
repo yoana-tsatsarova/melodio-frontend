@@ -3,7 +3,7 @@ const colors = require("tailwindcss/colors");
 const { fontFamily } = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
 module.exports = {
-  darkMode: ["class", '[data-theme="light"]'],
+  darkMode: ["class", '[data-theme="ligh  t"]'],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -21,6 +21,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        ins: ["var(--font-ins)", ...fontFamily.sans],
       },
       height: {
         "half-screen": "50vh",

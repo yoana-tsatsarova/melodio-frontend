@@ -7,12 +7,12 @@ import {
     DropdownMenuLabel,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { User, LogOut } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {User, LogOut} from "lucide-react";
+import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {createClientComponentClient, Session} from "@supabase/auth-helpers-nextjs";
-import { Database } from "@/types/supabase";
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import {Database} from "@/types/supabase";
+import {useCallback, useEffect, useState} from "react";
+import {useRouter} from "next/navigation";
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import {useSession} from "@/providers/supabase-provider";
@@ -29,7 +29,7 @@ interface AccountFormProps {
 }
 
 
-const Navbar = ({ session }: { session: Session | null }) =>{
+const Navbar = ({session}: { session: Session | null }) => {
     // Create a supabase client
     const supabase = createClientComponentClient<Database>();
 
@@ -44,7 +44,7 @@ const Navbar = ({ session }: { session: Session | null }) =>{
         try {
             setLoading(true);
 
-            const { data } = await supabase
+            const {data} = await supabase
                 .from('profiles')
                 .select(`full_name, username, avatar_url`)
                 .eq('id', user?.id)
@@ -86,7 +86,7 @@ const Navbar = ({ session }: { session: Session | null }) =>{
             {/* Container */}
             <div className="flex items-center  max-w-screen-3xl  justify-between flex-wrap  mx-auto p-4">
                 {/* Logo */}
-                <Link href={"/"} >
+                <Link href={"/"}>
                     <div className="px-3 ">
                         <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">
                             Melodio World 🌍
@@ -98,7 +98,7 @@ const Navbar = ({ session }: { session: Session | null }) =>{
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Avatar>
-                                <AvatarImage src={user?.app_metadata.avatar_url ?? ""} alt="@shadcn" />
+                                <AvatarImage src={user?.app_metadata.avatar_url ?? ""} alt="@shadcn"/>
                                 <AvatarFallback className={"text-gray-900"}>
                                     {profileData?.full_name?.charAt(0).toUpperCase() ?? "M"}
                                 </AvatarFallback>
@@ -111,26 +111,33 @@ const Navbar = ({ session }: { session: Session | null }) =>{
                             }}>My Account</DropdownMenuLabel>
                             <DropdownMenuGroup>
                                 <DropdownMenuItem>
-                                    <User className="w-4 h-4 mr-2" />
+                                    <User className="w-4 h-4 mr-2"/>
                                     <span>Profile</span>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={signOut}>
-                                    <LogOut className="w-4 h-4 mr-2" />
+                                    <LogOut className="w-4 h-4 mr-2"/>
                                     <span>Log out</span>
                                 </DropdownMenuItem>
                             </DropdownMenuGroup>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 ) : (
-                    <Button
-                        onClick={() => {
-                            router.push("/login");
-                        }}
-                        className="px-4 py-2 font-medium text-gray-100 bg-spotify-green rounded-md"
-                    >
-                        Log In
-                    </Button>
+                    <Button size={"lg"} className="bg-spotify-green rounded-2xl text-stone-200" onClick={() => {
+                        // Redirect to the login page
+                        router.push("/login");
+                    }}>Login</Button>
                 )}
+            </div>
+            <div className="flex items-center justify-center space-x-4 text-sm px-4 py-2 block text-gray-100  md:hidden ">
+                <Link className="hover:text-gray-600 font-semibold hover:bg-spotify-green px-4 rounded" href="/explore">
+                    Explore
+                </Link>
+                <Link className="hover:text-gray-600 font-semibold hover:bg-spotify-green px-4 rounded" href="/favorites">
+               Favorites
+                </Link>
+                <Link className="hover:text-gray-600 font-semibold hover:bg-spotify-green px-4 rounded" href="/recommended">
+                    Recommended
+                </Link>
             </div>
         </nav>
     );
