@@ -89,7 +89,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                 return res.data as T;
             }
 
-            const playlist: Playlist = await fetchWebApi(
+            const response = await fetchWebApi(
                 `v1/users/${session?.user.user_metadata.provider_id}/playlists`,
                 'POST',
                 {
@@ -99,7 +99,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                 }
             );
 
-            console.log("JSOM: ", playlist)
+            console.log("JSOM: ", response)
 
             // const trackURIS = songIds.map(id => `spotify:track:${id}`);
             // for (let i = 0; i < songIds.length; i++) {
