@@ -91,26 +91,18 @@ const FavoritesPage = ({session}: AccountFormProps) => {
 
     return (
         <>
-            <main className={"flex w-full"}>
-                <div className="col-span-6 lg:col-span-4 lg:border-r">
-                    <section   className="
-          hidden
-          md:flex
-          flex-col
-          gap-y-4
-          h-full
-          w-[300px]
-          p-4
-        ">
+            <main className={"flex h-screen w-full"}>
+                <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
+                    <section className="
+      hidden
+      md:flex
+      flex-col
+      gap-y-4
+      h-full
+      w-[300px]
+      p-4
+    ">
 
-                        <Link href={"/"}>
-                            <div className="px-3 py-4">
-                                <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">
-                                    Melodio World 🌍
-                                </h2>
-                            </div>
-                        </Link>
-                        <Separator className="my-4"/>
                         <Link href={"/explore"}>
                             <Button variant="ghost" className="w-full justify-start">
                                 <svg
