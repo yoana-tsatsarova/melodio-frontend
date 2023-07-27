@@ -5,7 +5,7 @@ import ScrollObserver from "@/lib/ScrollObserver";
 import {cn} from "@/lib/utils";
 import {Session, createClientComponentClient, createServerComponentClient} from '@supabase/auth-helpers-nextjs'
 
-import Navbar from "@/app/(Nav)/Navbar";
+import Navbar from "@/components/nav/Navbar";
 import {cookies} from "next/headers";
 import {Database} from "@/types/supabase";
 
