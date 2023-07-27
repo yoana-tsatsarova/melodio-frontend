@@ -24,14 +24,10 @@ B
 next.config.js,8/1/811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
 H
 app/recommended/page.tsx,8/6/86fb4ff57972572625430ec6195c11e3fa1e38da
-F
-app/account/avatar.tsx,3/1/31e8008c43d89cce15babeb36bc73d1f998fe090
 J
 app/auth/callback/route.ts,6/a/6a851a0fe0d28f8ae0d38985fd9e99dbbfcf3e1d
 E
 components/Member.tsx,1/c/1cf8f68b2dd7e06a062ca0e1aff657331ced1288
-<
-app/page.tsx,6/f/6f76c4f4dad83442e836edc16c9735cb7bb32a73
 F
 components/Aboutus.tsx,7/e/7e1d46605bc16acb3c9ed75c9cf919d3d922dd7e
 F

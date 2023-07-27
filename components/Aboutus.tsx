@@ -47,7 +47,7 @@ const Aboutus = () => {
           <img src="/images/JavaPuffs_logo_black-without_background.png"/>
         </div>
         <div className="justify-center flex mx-auto items-center mt-6">
-        <Image className={" shadow-2xl rounded-lg"} src="/images/IMG_1387.jpg" alt="JaffaPuffs" width={500} height={500} />
+        <Image className={" shadow-2xl rounded-lg"} src="/images/mobpicture.jpg" alt="JaffaPuffs" width={500} height={500} />
         </div>
       </div>
         <div className="container mx-auto px-11 mt-28">
