@@ -72,7 +72,7 @@ interface WorkLinksProps {
 const WorkLinks: React.FC<WorkLinksProps> = ({ href, children }) => {
   return (
     <Link href={href}>
-      <a>{children}</a>
+      {children}
     </Link>
   );
 };

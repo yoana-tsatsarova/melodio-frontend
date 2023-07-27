@@ -1,9 +1,20 @@
 "use client";
-import { useEffect, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
-import { createClientComponentClient, Session } from "@supabase/auth-helpers-nextjs";
-import Link from "next/link";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { User, LogOut } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {createClientComponentClient, Session} from "@supabase/auth-helpers-nextjs";
+import { Database } from "@/types/supabase";
+import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import {Button} from "@/components/ui/button";
 
 // Define types for profile data
 type ProfileData = {
@@ -13,19 +24,26 @@ type ProfileData = {
     avatar_url: string | null;
 };
 
-const Navbar = ({ session }: { session: Session | null }) => {
+interface AccountFormProps {
+    session: Session | null;
+}
+
+
+const Navbar = ({ session }: { session: Session | null }) =>{
     // Create a supabase client
     const supabase = createClientComponentClient<Database>();
 
     // State to manage user data and loading state
+    const [loading, setLoading] = useState(true);
     const [profileData, setProfileData] = useState<ProfileData | null>(null);
-    const router = useRouter();
 
     const user = session?.user;
 
     // Function to fetch and update profile data
     const getProfile = useCallback(async () => {
         try {
+            setLoading(true);
+
             let { data, error, status } = await supabase
                 .from('profiles')
                 .select(`full_name, username, website, avatar_url`)
@@ -41,6 +59,8 @@ const Navbar = ({ session }: { session: Session | null }) => {
             }
         } catch (error) {
             alert('Error loading user data!');
+        } finally {
+            setLoading(false);
         }
     }, [user, supabase]);
 
@@ -59,55 +79,59 @@ const Navbar = ({ session }: { session: Session | null }) => {
         }
     };
 
+    // Create a reference to Next.js router
+    const router = useRouter();
+
     return (
-        <nav className="bg-stone-200 border-gray-200 dark:bg-gray-900">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <nav className=" border-b border-neutral-100 bg-gray-1100 text-stone-100">
+            {/* Container */}
+            <div className="flex items-center  max-w-screen-xl  justify-between flex-wrap  mx-auto p-4">
                 {/* Logo */}
-                <Link href="/">
-                    <a className="flex items-center">
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Melodio World 🌍</span>
-                    </a>
+                <Link href={"/"} >
+                    <div className="px-3 py-4">
+                        <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">
+                            Melodio World 🌍
+                        </h2>
+                    </div>
                 </Link>
-                {/* User Avatar/Profile or Log In button */}
-                <div className="flex items-center md:order-2">
-                    {session ? (
-                        <div>
-                            <button type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
-                                <span className="sr-only">Open user menu</span>
-                                <img className="w-8 h-8 rounded-full" src={profileData?.avatar_url ?? ""} alt="user photo" />
-                            </button>
-                            <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
-                                <div className="px-4 py-3">
-                                    <span className="block text-sm text-gray-900 dark:text-white">{profileData?.full_name}</span>
-                                    <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{profileData?.username}</span>
-                                </div>
-                                <ul className="py-2">
-                                    <li>
-                                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                            <User className="w-4 h-4 mr-2" />
-                                            <span>Profile</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onClick={signOut} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                            <LogOut className="w-4 h-4 mr-2" />
-                                            <span>Log out</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    ) : (
-                        <button
-                            onClick={() => {
-                                router.push("/login");
-                            }}
-                            className="px-4 py-2 font-medium text-white bg-blue-500 rounded-md"
-                        >
-                            Log In
-                        </button>
-                    )}
-                </div>
+                {/* Avatar or Log In button */}
+                {session ? (
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Avatar>
+                                <AvatarImage src={profileData?.avatar_url ?? ""} alt="@shadcn" />
+                                <AvatarFallback className={"text-gray-900"}>
+                                    {profileData?.full_name?.charAt(0).toUpperCase() ?? "M"}
+                                </AvatarFallback>
+                            </Avatar>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-56">
+                            <DropdownMenuLabel onClick={() => {
+                                // Redirect to the login page
+                                router.push("/account");
+                            }}>My Account</DropdownMenuLabel>
+                            <DropdownMenuGroup>
+                                <DropdownMenuItem>
+                                    <User className="w-4 h-4 mr-2" />
+                                    <span>Profile</span>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={signOut}>
+                                    <LogOut className="w-4 h-4 mr-2" />
+                                    <span>Log out</span>
+                                </DropdownMenuItem>
+                            </DropdownMenuGroup>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                ) : (
+                    <Button
+                        onClick={() => {
+                            router.push("/login");
+                        }}
+                        className="px-4 py-2 font-medium text-gray-100 bg-spotify-green rounded-md"
+                    >
+                        Log In
+                    </Button>
+                )}
             </div>
         </nav>
     );

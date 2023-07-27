@@ -16,10 +16,14 @@ export default async function Login() {
             <div className="grid w-full h-screen grid-cols-2">
             <LoginForm session={session} />
 
-            <div className="border-l-2 bg-gradient-to-r from-emerald-300 to-emerald-700 border-emerald-500" />
-                <h1>     Melodio World 🌍</h1>
+            <div className="border-l-2 bg-gradient-to-r from-emerald-300 to-emerald-700 border-emerald-500" >
+                <div className="flex flex-col  items-center justify-center min-h-screen py-2 px-4 sm:px-0">
+                    <div className="flex items-center justify-center w-full h-full">
+                <h1 className={"text-6xl  font-bold"}>     Melodio World 🌍</h1>
         </div>
-
+            </div>
+            </div>
+            </div>
         </>
     )
 }
