@@ -105,14 +105,14 @@ const FavoritesPage = ({session}: AccountFormProps) => {
           p-4
         ">
 
-          <Link href={"/"}>
-              <div className="px-3 py-4">
-                  <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">
-                      Melodio World 🌍
-                  </h2>
-              </div>
-          </Link>
-          <Separator className="my-4"/>
+          {/*<Link href={"/"}>*/}
+          {/*    <div className="px-3 py-4">*/}
+          {/*        <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">*/}
+          {/*            Melodio World 🌍*/}
+          {/*        </h2>*/}
+          {/*    </div>*/}
+          {/*</Link>*/}
+          {/*<Separator className="my-4"/>*/}
           <Link href={"/explore"}>
               <Button variant="ghost" className="w-full justify-start">
                   <svg
