@@ -80,6 +80,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
         const response = await axios.post(url, playlistData, config);
         const playlistId = response.data.id;
         const trackUris = songIds.map(id => `spotify:track:${id}`);
+        console.log(trackUris);
 
         const apiUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
 
