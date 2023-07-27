@@ -14,8 +14,9 @@ export default async function Home() {
 
         <HeroSection />
           <Aboutus />
-          <Skills />
+
           <Works />
+          <Skills />
           <TechUsed />
 
       </section>

@@ -102,7 +102,7 @@ const Recommended = ({ session }: AccountFormProps) => {
 
     return (
         <>
-            <main className="flex h-screen w-auto">
+            <main className="flex  w-auto">
                 <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
                     <section className="
       hidden
@@ -197,7 +197,7 @@ const Recommended = ({ session }: AccountFormProps) => {
                     </div>
                 </section>
             </div>
-             </main>
+
             <iframe
                 title="Spotify Embed: Recommendation Playlist "
                 src={playlistUrl}
@@ -207,8 +207,9 @@ const Recommended = ({ session }: AccountFormProps) => {
                 frameBorder="0"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy"
-                className={"mx-auto justify-center items-center flex rounded-2xl -mt-20"}
+                className={"mx-auto justify-center items-center flex rounded-2xl mt-6"}
             />
+            </main>
         </>
     )
 }
