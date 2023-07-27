@@ -13,7 +13,7 @@ export default function LoginForm({ session }: { session: Session | null }) {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: "spotify",
             options: {
-                redirectTo: "localhost:3000/callback",
+                redirectTo: "https://roovhggcmqbknwqzjyrv.supabase.co/auth/v1/callback",
                 scopes:
                     "user-read-playback-state user-modify-playback-state user-read-currently-playing playlist-read-private playlist-modify-private user-read-playback-position user-top-read",
             },

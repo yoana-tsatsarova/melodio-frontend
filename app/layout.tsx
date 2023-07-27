@@ -16,21 +16,22 @@ export const metadata = {
 export const dynamic = 'force-dynamic';
 
 
-const supabase = createServerComponentClient<Database>({ cookies })
 const fontSans = FontSans({
     subsets: ["latin"],
     variable: "--font-sans",
     display: "swap",
 });
-const {
-    data: { session },
-} = await supabase.auth.getSession()
 export default async function RootLayout({
 
   children,
 }: {
   children: React.ReactNode;
 }) {
+    const supabase = createServerComponentClient<Database>({ cookies })
+
+    const {
+        data: { session },
+    } = await supabase.auth.getSession()
   return (
     <html lang="en">
       <body className={cn(
@@ -38,9 +39,8 @@ export default async function RootLayout({
           fontSans.variable
       )}>
 
-        <Navbar  session={session}/>
         <main className="flex min-h-screen w-screen overscroll-auto items-center bg-gray-1100 text-stone-50">
-
+            <Navbar session={session} />
           <ScrollObserver>{children}</ScrollObserver>
           <Toaster />
         </main>

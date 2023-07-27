@@ -5,10 +5,13 @@ import Works from "@/components/Works";
 import TechUsed from "@/components/TechUsed";
 
 
-export default function Home() {
-  return (
+export default async function Home() {
+
+
+    return (
     <>
       <section>
+
         <HeroSection />
           <Aboutus />
           <Skills />

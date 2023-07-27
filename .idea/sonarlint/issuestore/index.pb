@@ -26,8 +26,6 @@ H
 next.config.js,8/1/811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
 J
 app/auth/callback/route.ts,6/a/6a851a0fe0d28f8ae0d38985fd9e99dbbfcf3e1d
-<
-app/page.tsx,6/f/6f76c4f4dad83442e836edc16c9735cb7bb32a73
 F
 components/Aboutus.tsx,7/e/7e1d46605bc16acb3c9ed75c9cf919d3d922dd7e
 F
