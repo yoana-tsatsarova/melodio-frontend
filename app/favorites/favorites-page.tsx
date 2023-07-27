@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import Link from "next/link";
 import {Separator} from "@/components/ui/seperator";
+import {Form} from "react-hook-form";
+import alertDialogStories from "@radix-ui/react-alert-dialog/src/AlertDialog.stories";
 
 interface AccountFormProps {
     session: Session | null;
@@ -21,6 +23,9 @@ interface AccountFormProps {
 const FavoritesPage = ({session}: AccountFormProps) => {
     const [songUrls, setSongUrls] = useState<string[]>();
     const [songIds, setSongIds] = useState<string[]>([]);
+    const [playlistName, setPlaylistName] = useState<string>('');
+    const [playlistUrl, setPlaylistUrl] = useState<string>('');
+    const [createdPlaylist, setCreatedPlaylist] = useState<boolean>(false);
 
     const getFavorites = async () => {
         try {
@@ -43,10 +48,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
     useEffect(() => {
         getFavorites();
     }, []);
-    //
-    // useEffect(() => {
-    //     getFavorites();
-    // }, [songIds]);
+
     const deleteSongFromPlaylist = async (e: any, songId: string) => {
         try {
             const url = `https://melodio.azurewebsites.net/favorites/${songId}`;
@@ -60,13 +62,19 @@ const FavoritesPage = ({session}: AccountFormProps) => {
         }
     };
 
-    const createSpotifyPlaylist = async () => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPlaylistName(event.target.value);
+    };
+
+    const addSongsToSpotifyPlaylist = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log("session: ", session)
+        try {
         const url = `https://api.spotify.com/v1/users/${session?.user.user_metadata.provider_id}/playlists`;
         const accessToken = session?.provider_token;
-        console.log(session?.provider_token)// Replace this with your actual access token
 
         const playlistData = {
-            name: 'Melodio',
+            name: {playlistName},
             description: 'Favorite songs from Melodio',
             public: false,
         };
@@ -78,16 +86,38 @@ const FavoritesPage = ({session}: AccountFormProps) => {
             },
         };
 
-        axios.post(url, playlistData, config)
-            .then((response) => {
-                console.log('Playlist created successfully:', response.data);
-            })
-            .catch((error) => {
-                console.error('Error creating playlist:', error.message);
-            });
+        const response = await axios.post(url, playlistData, config);
+        const playlistId = response.data.playlist.id;
+        const trackURIS = songIds.map(id => `spotify:track:${id}`);
+        setSongIds([]);
+        setSongUrls([]);
+        for (let i = 0; i < songIds.length; i++) {
+            const url = `https://melodio.azurewebsites.net/favorites/${songIds[i]}`;
+            await axios.delete(url);
+        }
+        getFavorites();
+        const playUrl = `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`;
+        setPlaylistUrl(playUrl);
+
+        await axios.post(
+            `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+            {
+                uris: trackURIS,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            }
+        );
+
+        setCreatedPlaylist(true);
+
+
+        console.log('Playlist created and tracks added successfully!');
+    } catch (error) {
+            console.log(error);
     }
-    const addSongsToSpotifyPlaylist = async () => {
-        await createSpotifyPlaylist();
 
     }
 
@@ -176,7 +206,15 @@ const FavoritesPage = ({session}: AccountFormProps) => {
           <Separator className="my-4"/>
       </section>
   </div>
-      {/*<Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>*/}
+      <form onSubmit={addSongsToSpotifyPlaylist}>
+          <input
+              type="text"
+              value={playlistName}
+              onChange={handleInputChange}
+              placeholder="Enter your playlist name"
+          />
+          <button type="submit">Create Spotify Playlist</button>
+      </form>
       <div className="grid grid-cols-4 gap-4 place-items-center mx-auto">
           {songUrls?.map((songUrl) => (
               <div key={songUrl} className={"group"}>
@@ -204,8 +242,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                           <AlertDialogHeader>
                               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                               <AlertDialogDescription>
-                                  This action cannot be undone. This will permanently delete your
-                                  favorites and remove your songs from your playlist.
+                                  This action cannot be undone. This will permanently delete this song from your favorites.
                               </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
@@ -219,8 +256,17 @@ const FavoritesPage = ({session}: AccountFormProps) => {
               </div>
           ))}
           <ToastContainer autoClose={1200} theme={"dark"} />
-      </div></main>
-            <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
+      </div>
+      {createdPlaylist && <iframe
+          title="Spotify Embed: Recommendation Playlist "
+          src={playlistUrl}
+          width="50%"
+          height="100%"
+          style={{ minHeight: '800px' }}
+          frameBorder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+      />}</main>
         </>
     );
 };
