@@ -1,7 +1,7 @@
 "use client";
 import Image from 'next/image';
 import styles from '../app/page.module.scss';
-import { useRef, MouseEvent } from 'react';
+import React, { useRef, MouseEvent } from 'react';
 import gsap from 'gsap';
 import floating1 from '../public/images/image_1.jpg';
 import floating2 from '../public/images/image_2.jpg';
@@ -11,6 +11,8 @@ import floating5 from '../public/images/image_5.jpg';
 import floating6 from '../public/images/image_6.jpg';
 import floating9 from '../public/images/image_9.jpg';
 import floating11 from '../public/images/image_10.jpg';
+import {Button} from "@/components/ui/button";
+import Link from "next/link";
 
 const HeroSection = () => {
     const plane1 = useRef<HTMLDivElement>(null);
@@ -72,11 +74,15 @@ const HeroSection = () => {
             <div className={styles.title}>
                 <h1 className={"text-center text-8xl font-bold text-slate-50 animate-focus-in-expand-fwd"}> Melodio 🌍</h1>
                 <p className={"animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em]  drop-shadow-sm"}>Explore the world through music</p>
+                <Link href={"/explore"}>
+                    <Button variant="ghost" className="w-1/3 justify-center bg-spotify-green text-stone-100 rounded-xl mx-auto my-4 flex hover:bg-slate-300 text-slate-900 -top-2 transition delay-7000 duration-800 ease-in-out">
+                        Explore
+                    </Button>
+                </Link>
             </div>
             <div
                 className={"flex-grow-0 transition-all  mt-4  justify-center items-center flex animate-pulse relative " }>
             </div>
-
         </main>
     );
 }
