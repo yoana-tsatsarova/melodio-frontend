@@ -1,13 +1,15 @@
-import React from 'react'
-import Login from "@/app/login/Login";
-// import Login from "@/app/login/login";
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+import {Database} from "@/types/supabase";
+import LoginForm from "@/app/login/Login";
 
-const Page = () => {
-    return (
-        <div className="grid w-full h-screen grid-cols-2">
-            <Login />
-            <div className="border-l-2 bg-gradient-to-r from-emerald-300 to-emerald-700 border-emerald-500" />
-        </div>
-    )
+
+export default async function Login() {
+    const supabase = createServerComponentClient<Database>({ cookies })
+
+    const {
+        data: { session },
+    } = await supabase.auth.getSession()
+
+    return <LoginForm session={session} />
 }
-export default Page
