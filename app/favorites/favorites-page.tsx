@@ -78,7 +78,28 @@ const FavoritesPage = ({session}: AccountFormProps) => {
         };
 
         const response = await axios.post(url, playlistData, config);
-        console.log(response);
+        const playlistId = response.data.id;
+        const trackUris = songIds.map(id => `spotify:track:${id}`);
+
+        const apiUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+
+        const headers = {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+        };
+
+        const requestData = {
+            trackUris, // Replace 'string' with the actual URI you want to add to the playlist
+            position: 0,
+        };
+
+        axios.post(apiUrl, requestData, { headers })
+            .then((response) => {
+                console.log('Successfully added track to playlist:', response.data);
+            })
+            .catch((error) => {
+                console.error('Error adding track to playlist:', error);
+            });
 
     }
 
