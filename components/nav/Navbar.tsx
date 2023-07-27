@@ -91,6 +91,7 @@ export default function Navbar({session}: AccountFormProps) {
                             <DropdownMenuLabel onClick={() => {
                                 // Redirect to the login page
                                 router.push("/account");
+                                router.refresh();
                             }}>My Account</DropdownMenuLabel>
                             <DropdownMenuGroup>
                                 <DropdownMenuItem>
@@ -108,6 +109,7 @@ export default function Navbar({session}: AccountFormProps) {
                     <Button size={"lg"} className="bg-spotify-green rounded-2xl text-stone-200" onClick={() => {
                         // Redirect to the login page
                         router.push("/login");
+                        router.refresh();
                     }}>Login</Button>
                 )}
             </div>
