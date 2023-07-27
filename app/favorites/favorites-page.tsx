@@ -78,6 +78,9 @@ const FavoritesPage = ({session}: AccountFormProps) => {
         try {
             const accessToken = session?.provider_token;
 
+            const response = await fetchWebApi('v1/me', 'GET');
+            const { id: user_id } = response as { id: string };
+
             async function fetchWebApi<T>(endpoint: string, method: HttpMethod, body?: any): Promise<T> {
                 const res = await axios(`https://api.spotify.com/${endpoint}`, {
                     headers: {
@@ -89,8 +92,8 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                 return res.data as T;
             }
 
-            const response = await fetchWebApi(
-                `v1/users/${session?.user.user_metadata.provider_id}/playlists`,
+            const playlist: Playlist = await fetchWebApi(
+                `v1/users/${user_id}/playlists`,
                 'POST',
                 {
                     "name": {playlistName},
@@ -99,7 +102,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                 }
             );
 
-            console.log("JSOM: ", response)
+            console.log("JSOM: ", playlist)
 
             // const trackURIS = songIds.map(id => `spotify:track:${id}`);
             // for (let i = 0; i < songIds.length; i++) {
