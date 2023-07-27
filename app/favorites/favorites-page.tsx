@@ -85,7 +85,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
             };
 
             const response = await axios.post(url, playlistData, config);
-            const playlistId = response.data.playlist.id;
+            console.log("JSOM: ", response.data)
             const trackURIS = songIds.map(id => `spotify:track:${id}`);
             for (let i = 0; i < songIds.length; i++) {
                 const url = `https://melodio.azurewebsites.net/favorites/${songIds[i]}`;
