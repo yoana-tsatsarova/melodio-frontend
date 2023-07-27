@@ -3,13 +3,14 @@ import Image from 'next/image';
 import styles from '../app/page.module.scss';
 import { useRef, MouseEvent } from 'react';
 import gsap from 'gsap';
-import floating1 from '../public/images/img_1.jpg';
-import floating2 from '../public/images/img_2.jpg';
-import floating3 from '../public/images/img_3.jpg';
-import floating4 from '../public/images/img_4.jpg';
-import floating5 from '../public/images/img_5.jpg';
-import floating9 from '../public/images/img_9.jpg';
-import floating11 from '../public/images/img_11.jpg';
+import floating1 from '../public/images/image_1.jpg';
+import floating2 from '../public/images/image_2.jpg';
+import floating3 from '../public/images/image_3.jpg';
+import floating4 from '../public/images/image_4.jpg';
+import floating5 from '../public/images/image_5.jpg';
+import floating6 from '../public/images/image_6.jpg';
+import floating9 from '../public/images/image_9.jpg';
+import floating11 from '../public/images/image_10.jpg';
 
 const HeroSection = () => {
     const plane1 = useRef<HTMLDivElement>(null);
@@ -37,8 +38,8 @@ const HeroSection = () => {
         xForce = lerp(xForce, 0, easing);
         yForce = lerp(yForce, 0, easing);
         gsap.to(plane1.current, {x: `+=${xForce}`, y: `+=${yForce}`})
-        gsap.to(plane2.current, {x: `+=${xForce * 0.5}`, y: `+=${yForce * 0.5}`})
-        gsap.to(plane3.current, {x: `+=${xForce * 0.25}`, y: `+=${yForce * 0.25}`})
+        gsap.to(plane2.current, {x: `+=${xForce * 2.0}`, y: `+=${yForce * 0.5}`})
+        gsap.to(plane3.current, {x: `+=${xForce * 2.0}`, y: `+=${yForce * 0.25}`})
 
         if(Math.abs(xForce) < 0.01) xForce = 0;
         if(Math.abs(yForce) < 0.01) yForce = 0;
@@ -55,7 +56,7 @@ const HeroSection = () => {
     return (
         <main onMouseMove={(e) => {manageMouseMove(e)}} className={styles.main}>
             <div ref={plane1} className={styles.plane}>
-                <Image src={floating5} alt='image' width={300} />
+                <Image src={floating6} alt='image' width={300} />
                 <Image src={floating9} alt='image' width={325} />
                 <Image src={floating1} alt='image' width={250} />
             </div>
@@ -70,7 +71,7 @@ const HeroSection = () => {
             </div>
             <div className={styles.title}>
                 <h1 className={"text-center text-8xl font-bold text-slate-50 animate-focus-in-expand-fwd"}> Melodio 🌍</h1>
-                <p className={"animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em]  drop-shadow-sm"}>Helping you Explore the world through music</p>
+                <p className={"animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em]  drop-shadow-sm"}>Explore the world through music</p>
             </div>
             <div
                 className={"flex-grow-0 transition-all  mt-4  justify-center items-center flex animate-pulse relative " }>

@@ -10,19 +10,22 @@ type Props = {
 };
 
 const Works = ({ children }: Props) => (
-  <TileWrapper numOfPages={3}>
+  <TileWrapper numOfPages={4}>
     <TileBackground>
       <Workbackground>{children}</Workbackground>
     </TileBackground>
     <TileContent>
-      <Tile page={0} renderContent="Foo" />
+      <Tile page={0} renderContent="Yoana" />
     </TileContent>
     <TileContent>
-      <Tile page={1} renderContent="Bar" />
+      <Tile page={1} renderContent="Togrul" />
     </TileContent>
     <TileContent>
-      <Tile page={2} renderContent="Baz" />
+      <Tile page={2} renderContent="Carolina" />
     </TileContent>
+      <TileContent>
+          <Tile page={3} renderContent="Ryan" />
+      </TileContent>
   </TileWrapper>
 );
 
