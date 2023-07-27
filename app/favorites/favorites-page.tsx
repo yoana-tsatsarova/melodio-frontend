@@ -21,6 +21,7 @@ interface AccountFormProps {
 const FavoritesPage = ({session}: AccountFormProps) => {
     const [songUrls, setSongUrls] = useState<string[]>();
     const [songIds, setSongIds] = useState<string[]>([]);
+    const [playlistName, setPlaylistName] = useState<string>();
 
     const getFavorites = async () => {
         try {
@@ -57,13 +58,14 @@ const FavoritesPage = ({session}: AccountFormProps) => {
         }
     };
 
-    const createSpotifyPlaylist = async () => {
+    const addSongsToSpotifyPlaylist = async (e: any) => {
+        e.preventDefault();
         const url = `https://api.spotify.com/v1/users/${session?.user.user_metadata.provider_id}/playlists`;
         const accessToken = session?.provider_token;
         console.log(session?.provider_token)// Replace this with your actual access token
 
         const playlistData = {
-            name: 'Melodio',
+            name: {playlistName},
             description: 'Favorite songs from Melodio',
             public: false,
         };
@@ -82,16 +84,16 @@ const FavoritesPage = ({session}: AccountFormProps) => {
             .catch((error) => {
                 console.error('Error creating playlist:', error.message);
             });
-    }
 
-    const addSongsToSpotifyPlaylist = async () => {
-        await createSpotifyPlaylist();
 
     }
+
 
     return (
         <>
             <main className={"flex h-screen w-full"}>
+                <input onChange={(e) => setPlaylistName(e.target.value)}/>
+                <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
                 <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
                     <section className="
       hidden
@@ -232,7 +234,6 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                     ))}
                     <ToastContainer autoClose={1200} theme={"dark"} />
                 </div></main>
-            <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
         </>
     );
 };
