@@ -20,7 +20,6 @@ import {Button} from "@/components/ui/button";
 type ProfileData = {
     full_name: string | null;
     username: string | null;
-    website: string | null;
     avatar_url: string | null;
 };
 
@@ -44,20 +43,20 @@ const Navbar = ({ session }: { session: Session | null }) =>{
         try {
             setLoading(true);
 
-            let { data, error, status } = await supabase
+            const { data } = await supabase
                 .from('profiles')
-                .select(`full_name, username, website, avatar_url`)
+                .select(`full_name, username, avatar_url`)
                 .eq('id', user?.id)
-                .single() as { data: ProfileData; error: Error | null; status: number };
-
-            if (error && status !== 406) {
-                throw error;
-            }
+                .single();
 
             if (data) {
                 setProfileData(data);
             }
+
+            console.log(session)
+            console.log("Success")
         } catch (error) {
+            console.log(session)
             alert('Error loading user data!');
         } finally {
             setLoading(false);

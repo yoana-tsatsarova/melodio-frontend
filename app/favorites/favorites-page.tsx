@@ -43,10 +43,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
     useEffect(() => {
         getFavorites();
     }, []);
-    //
-    // useEffect(() => {
-    //     getFavorites();
-    // }, [songIds]);
+
     const deleteSongFromPlaylist = async (e: any, songId: string) => {
         try {
             const url = `https://melodio.azurewebsites.net/favorites/${songId}`;
@@ -86,6 +83,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                 console.error('Error creating playlist:', error.message);
             });
     }
+
     const addSongsToSpotifyPlaylist = async () => {
         await createSpotifyPlaylist();
 
