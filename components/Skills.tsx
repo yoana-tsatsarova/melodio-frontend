@@ -37,23 +37,21 @@ const Skills = (props: Props) => {
             style={{
               opacity: opacityForBlock(progress, 0),
             }}>
-            We know our tools inside out.
+            Discover the world's top ten tracks from different countries
           </div>
           <span
             className={`${s.skillText}inline-block after:content-['_']`}
             style={{
               opacity: opacityForBlock(progress, 1),
             }}>
-            Our team has contributed 296 commits to React Native core, powering
-            thousands of apps worldwide.
+            Sync with Spotify, get personalized recommendations, and uncover your most-listened tracks.
           </span>
           <span
             className={`${s.skillText}inline-block `}
             style={{
               opacity: opacityForBlock(progress, 2),
             }}>
-            We&apos;re maintaining some of the most popular open-source
-            projects, with over <strong>43 million </strong>downloads.
+             Let Melodio World be your gateway to a world of musical wonders! 🌍🎶
           </span>
         </div>
       </div>

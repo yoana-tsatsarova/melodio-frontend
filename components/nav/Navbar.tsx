@@ -13,6 +13,8 @@ import {createClientComponentClient, Session} from "@supabase/auth-helpers-nextj
 import { Database } from "@/types/supabase";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import {Button} from "@/components/ui/button";
 
 // Define types for profile data
 type ProfileData = {
@@ -85,11 +87,13 @@ const Navbar = ({ session }: { session: Session | null }) =>{
             {/* Container */}
             <div className="flex items-center justify-around w-full py-6 mx-auto max-w-7xl">
                 {/* Logo */}
-                <div className="px-3 py-4">
-                    <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">
-                        Melodio World 🌍
-                    </h2>
-                </div>
+                <Link href={"/"} >
+                    <div className="px-3 py-4">
+                        <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">
+                            Melodio World 🌍
+                        </h2>
+                    </div>
+                </Link>
                 {/* Avatar or Log In button */}
                 {session ? (
                     <DropdownMenu>
@@ -116,7 +120,7 @@ const Navbar = ({ session }: { session: Session | null }) =>{
                         </DropdownMenuContent>
                     </DropdownMenu>
                 ) : (
-                    <button
+                    <Button
                         onClick={() => {
                             // Redirect to the login page
                             router.push("/login");
@@ -124,7 +128,7 @@ const Navbar = ({ session }: { session: Session | null }) =>{
                         className="px-4 py-2 font-medium text-white bg-spotify-green rounded-md"
                     >
                         Log In
-                    </button>
+                    </Button>
                 )}
             </div>
         </nav>

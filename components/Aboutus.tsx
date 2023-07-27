@@ -24,7 +24,7 @@ const Aboutus = () => {
         {
             id: "3",
             name: "Togrul Hasanbeyli",
-            href: "./images/IMG_1387.jpg",
+            href: "./images/mobpicture.jpg",
             bio: "I am a Fullstack Java Developer with a background in Environmental Engineering. In my early years, I pursued a career in professional football, but after moving to another country, I discovered a passion for Photography and Cinema. I was honored with the title of Landscape Photographer of the year in 2017. This experience motivated me to dive into coding and create my own application, elevating photos with my lut packages. This journey led me to pursue a coding career, turning my passion into a profession.",
             link: "https://www.linkedin.com/in/jhon-doe/"
         },
@@ -42,22 +42,19 @@ const Aboutus = () => {
   return (
     <section
       className={`flex flex-col min-h-screen bg-gray-100 text-gray-900 py-20 md:text-4xl text-3xl`}>
-      <div className="container mx-auto px-11">
-        <p className="leading-tight max-w-5xl tracking-tight mx-auto text-4xl">
-          <strong> We will help you ship better apps, faster. </strong> Our team
-          of expert engineers has created the best user experiences in some of
-          the most popular apps worldwide.
-        </p>
-      </div>
-      <div className="container mx-auto px-11 text-center mt-28">
-        <h2>
-          <strong>Our Team</strong>
-        </h2>
-        <div className="mt-2"> the &ldquo;spec-ops&rdquo;</div>
+      <div className="container mx-auto px-11 text-center">
+        <div className="flex justify-center">
+          <img src="/images/JavaPuffs_logo_black-without_background.png"/>
+        </div>
         <div className="justify-center flex mx-auto items-center mt-6">
-        <Image className={" shadow-2xl rounded-lg"} src="/images/IMG_1387.jpg" alt="JaffaPuffs" width={500} height={500} />
+        <Image className={" shadow-2xl rounded-lg"} src="/images/mobpicture.jpg" alt="JaffaPuffs" width={500} height={500} />
         </div>
       </div>
+        <div className="container mx-auto px-11 mt-28">
+            <p className="leading-tight max-w-5xl tracking-tight mx-auto text-4xl">
+                Meet our dynamic team of four <strong> JavaPuffs </strong> : Where Coding and Music Blend into Success! 🎸🎉🚀
+            </p>
+        </div>
     </section>
   );
 };
