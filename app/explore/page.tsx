@@ -78,172 +78,174 @@ const Page = () => {
         }
     };
 
-    return (
-        <>
-            <ToastContainer autoClose={1200} theme={"dark"}/>
-            <main className={"flex h-screen w-full"}>
-                <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
-                    <section className="
-          hidden
-          md:flex
-          flex-col
-          gap-y-4
-          h-full
-          w-[300px]
-          p-4
-        ">
-                        <Link href={"/explore"}>
-                            <Button variant="ghost" className="w-full justify-start">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="mr-2 h-6 w-6"
-                                >
-                                    <path d="M21 15V6"/>
-                                    <path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                                    <path d="M12 12H3"/>
-                                    <path d="M16 6H3"/>
-                                    <path d="M12 18H3"/>
-                                </svg>
-                                Explore
-                            </Button>
-                        </Link>
-                        <Separator className="my-4"/>
-                        <Link href={"/favorites"}>
-                            <Button variant="ghost" className="w-full justify-start">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="mr-4 h-6 w-6"
-                                >
-                                    <circle cx="8" cy="18" r="4"/>
-                                    <path d="M12 18V2l7 4"/>
-                                </svg>
-                                Your Favorites
-                            </Button> </Link>
-                        <Separator className="my-4"/>
-                        <Link href={"/recommended"}>
-                            <Button variant="ghost" className="w-full justify-start">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="mr-4 h-6 w-6"
-                                >
-                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
-                                Recommended
-                            </Button>
-                        </Link>
-                        <Separator className="my-4"/>
-                            <h2>About Us</h2>
-                            {/*<img src="images/carolina.jpg" className="rounded-full w-10 h-10"/>*/}
-                        <Separator className="my-4 mb-28"/>
-                        <img src="/images/JavaPuffs_logo_black-removebg-preview%20(1).png"/>
-                        <div className="avatar-group -space-x-6">
-                            <div className="avatar border-none">
-                                <div className="w-20 rounded-full">
-                                    <img src="/images/carolina.jpg" />
-                                </div>
-                            </div>
-                            <div className="avatar border-none">
-                                <div className="w-20 rounded-full">
-                                    <img src="/images/togrul.jpg" />
-                                </div>
-                            </div>
-                            <div className="avatar border-none">
-                                <div className="w-20 rounded-full">
-                                    <img src="/images/yoana.jpg" />
-                                </div>
-                            </div>
-                            <div className="avatar border-none">
-                                <div className="w-20 rounded-full">
-                                    <img src="/images/ryan.webp" />
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <div className="w-full overflow-hidden">
-                    <div className="flex w-full max-w-xl mx-auto items-center space-x-2">
-                        <Input
-                            className={"rounded-md"}
-                            placeholder={"Enter a Country"}
-                            onChange={(e) => setCountry(e.target.value)}
-                        />
-                        <Button
-                            className="px-9 my-2 h-9 rounded-md border-stone-700 hover:bg-spotify-green"
-                            type="submit"
-                            onClick={getTopTenTracks}
-                            variant={"outline"}
-                        >
+    return <>
+        <ToastContainer autoClose={1200} theme={"dark"}/>
+        <main className={"flex h-screen w-full"}>
+            <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
+                <section className="
+      hidden
+      md:flex
+      flex-col
+      gap-y-4
+      h-full
+      w-[300px]
+      p-4
+    ">
+                    <Link href={"/explore"} legacyBehavior>
+                        <Button variant="ghost" className="w-full justify-start">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="mr-2 h-6 w-6"
+                            >
+                                <path d="M21 15V6"/>
+                                <path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                                <path d="M12 12H3"/>
+                                <path d="M16 6H3"/>
+                                <path d="M12 18H3"/>
+                            </svg>
                             Explore
                         </Button>
-                    </div>
-                    <div className="w-auto overflow-hidden">
-                        <div>
-                            <MapBox
-                                locations={locations}
-                                latitude={latitude}
-                                longitude={longitude}
-                            />
+                    </Link>
+                    <Separator className="my-4"/>
+                    <Link href={"/favorites"} legacyBehavior>
+                        <Button variant="ghost" className="w-full justify-start">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="mr-4 h-6 w-6"
+                            >
+                                <circle cx="8" cy="18" r="4"/>
+                                <path d="M12 18V2l7 4"/>
+                            </svg>
+                            Your Favorites
+                        </Button> </Link>
+                    <Separator className="my-4"/>
+                    <Link href={"/recommended"} legacyBehavior>
+                        <Button variant="ghost" className="w-full justify-start">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="mr-4 h-6 w-6"
+                            >
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            Recommended
+                        </Button>
+                    </Link>
+                    <Separator className="my-4"/>
+                        <h2>About Us</h2>
+                        {/*<img src="images/carolina.jpg" className="rounded-full w-10 h-10"/>*/}
+                    <Separator className="my-4"/>
+                    <img src="/images/JavaPuffs_logo_black-removebg-preview%20(1).png"/>
+                    <div className="avatar-group -space-x-6">
+                        <div className="avatar border-none">
+                            <div className="w-24 rounded-full">
+                                <img src="/images/carolina.jpg" />
+                            </div>
+                        </div>
+                        <div className="avatar border-none">
+                            <div className="w-24 rounded-full">
+                                <img src="/images/togrul.jpg" />
+                            </div>
+                        </div>
+                        <div className="avatar border-none">
+                            <div className="w-24 rounded-full">
+                                <img src="/images/yoana.jpg" />
+                            </div>
+                        </div>
+                        <div className="avatar border-none">
+                            <div className="w-24 rounded-full">
+                                <img src="/images/ryan.webp" />
+                            </div>
                         </div>
                     </div>
-                    <div className="overflow-hidden">
-                        <div className="p-4">
-                            <Marquee pauseOnHover={true}>
-                                <div className="flex space-x-4 bg-gray-1000 px-1 rounded-md gap-2">
-                                    {songUrls?.map((songUrl, index) => (
-                                        <div key={songUrl} className={"group"}>
-                                            <iframe
-                                                className="rounded-md -mb-8 overflow-hidden max-h-[270px]"
-                                                src={songUrl}
-                                                height="270px"
-                                                allowFullScreen={true}
-                                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                                                loading="lazy"
-                                            ></iframe>
-                                            <form action="">
-                                                <Button
-                                                    className={
-                                                        "invisible group-hover:visible bg-spotify-green rounded-xl mx-auto flex hover:bg-slate-300 text-slate-900 -top-2 transition delay-7000 duration-800 ease-in-out "
-                                                    }
-                                                    onClick={(e) =>
-                                                        addSongToPlaylist(
-                                                            e,
-                                                            songIds[songUrls?.indexOf(songUrl)]
-                                                        )
-                                                    }
-                                                >
-                                                    <FaHeart /> Add to Favorite
-                                                </Button>
-                                            </form>
-                                        </div>
-                                    ))}
-                                </div>
-                            </Marquee>
-                        </div>
-                    </div>
-
+                </section>
+            </div>
+            <div className="w-full overflow-hidden">
+                <div className="flex w-full max-w-xl mx-auto items-center space-x-2">
+                    <Input
+                        className={"rounded-md"}
+                        placeholder={"Enter a Country"}
+                        onChange={(e) => setCountry(e.target.value)}
+                    />
+                    <Button
+                        className="px-9 my-2 h-9 rounded-md border-stone-700 hover:bg-spotify-green"
+                        type="submit"
+                        onClick={getTopTenTracks}
+                        variant={"outline"}
+                    >
+                        Explore
+                    </Button>
                 </div>
-            </main>
-        </>
-    );
+                <div className="w-auto overflow-hidden">
+                    <div>
+                        <MapBox
+                            locations={locations}
+                            latitude={latitude}
+                            longitude={longitude}
+                        />
+                    </div>
+                </div>
+                <div className="overflow-hidden">
+                    <div className="  p-4">
+                        <Marquee pauseOnHover={true}>
+                            <div className="flex space-x-4 bg-gray-1000 px-1 rounded-md gap-2">
+                                {songUrls?.map((songUrl) => (
+                                    <div key={songUrl} className={"group"}>
+
+                                        <iframe
+                                            className="rounded-md -mb-8 overflow-hidden max-h-[270px]"
+                                            src={songUrl}
+                                            height="270px"
+                                            allowFullScreen={true}
+                                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                            loading="lazy"
+                                        ></iframe>
+
+                                        <form action="">
+                                            <Button
+                                                className={
+                                                    "invisible group-hover:visible bg-spotify-green rounded-xl mx-auto flex hover:bg-slate-300 text-slate-900 -top-2 transition delay-7000 duration-800 ease-in-out "
+                                                }
+                                                onClick={(e) =>
+                                                    addSongToPlaylist(
+                                                        e,
+                                                        songIds[songUrls?.indexOf(songUrl)]
+                                                    )
+                                                }
+                                            >
+                                                <FaHeart/> Add to Favorite
+                                            </Button>
+                                        </form>
+                                    </div>
+
+                                ))}
+
+
+                            </div>
+                        </Marquee>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </>;
 };
 
 export default Page;

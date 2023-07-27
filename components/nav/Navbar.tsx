@@ -82,9 +82,9 @@ const Navbar = ({ session }: { session: Session | null }) =>{
     const router = useRouter();
 
     return (
-        <nav className="w-full border-b border-neutral-100 bg-gray-1100 text-stone-100">
+        <nav className=" border-b border-neutral-100 bg-gray-1100 text-stone-100">
             {/* Container */}
-            <div className="flex items-center justify-around w-full py-6 mx-auto max-w-7xl">
+            <div className="flex items-center  max-w-screen-xl  justify-between flex-wrap  mx-auto p-4">
                 {/* Logo */}
                 <Link href={"/"} >
                     <div className="px-3 py-4">
@@ -105,7 +105,10 @@ const Navbar = ({ session }: { session: Session | null }) =>{
                             </Avatar>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="w-56">
-                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                            <DropdownMenuLabel onClick={() => {
+                                // Redirect to the login page
+                                router.push("/account");
+                            }}>My Account</DropdownMenuLabel>
                             <DropdownMenuGroup>
                                 <DropdownMenuItem>
                                     <User className="w-4 h-4 mr-2" />
@@ -121,10 +124,9 @@ const Navbar = ({ session }: { session: Session | null }) =>{
                 ) : (
                     <Button
                         onClick={() => {
-                            // Redirect to the login page
                             router.push("/login");
                         }}
-                        className="px-4 py-2 font-medium text-white bg-spotify-green rounded-md"
+                        className="px-4 py-2 font-medium text-gray-100 bg-spotify-green rounded-md"
                     >
                         Log In
                     </Button>
