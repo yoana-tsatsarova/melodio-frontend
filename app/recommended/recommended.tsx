@@ -207,7 +207,7 @@ const Recommended = ({ session }: AccountFormProps) => {
                 frameBorder="0"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy"
-                className={"mx-auto justify-center items-center flex rounded-2xl"}
+                className={"mx-auto justify-center items-center flex rounded-2xl -mt-20"}
             />
         </>
     )
