@@ -24,8 +24,6 @@ B
 next.config.js,8/1/811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
 H
 app/recommended/page.tsx,8/6/86fb4ff57972572625430ec6195c11e3fa1e38da
-F
-app/account/avatar.tsx,3/1/31e8008c43d89cce15babeb36bc73d1f998fe090
 J
 app/auth/callback/route.ts,6/a/6a851a0fe0d28f8ae0d38985fd9e99dbbfcf3e1d
 E

@@ -9,11 +9,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { User, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import {createClientComponentClient, Session} from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/types/supabase";
-import { Session } from "@supabase/supabase-js";
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 // Define types for profile data
@@ -24,12 +22,12 @@ type ProfileData = {
     avatar_url: string | null;
 };
 
-// Define types for the props
-type NavbarProps = {
-    session?: Session | null;
-};
+interface AccountFormProps {
+    session: Session | null;
+}
 
-const Navbar = ({ session }: NavbarProps) => {
+
+const Navbar = ({ session }: { session: Session | null }) =>{
     // Create a supabase client
     const supabase = createClientComponentClient<Database>();
 
@@ -85,7 +83,7 @@ const Navbar = ({ session }: NavbarProps) => {
     return (
         <nav className="w-full border-b border-neutral-100 bg-gray-1100 text-stone-100">
             {/* Container */}
-            <div className="flex items-center justify-between w-full py-6 mx-auto max-w-7xl">
+            <div className="flex items-center justify-around w-full py-6 mx-auto max-w-7xl">
                 {/* Logo */}
                 <div className="px-3 py-4">
                     <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">
