@@ -83,17 +83,13 @@ const FavoritesPage = ({session}: AccountFormProps) => {
 
         const apiUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
 
-        const headers = {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-        };
 
         const requestData = {
             trackUris, // Replace 'string' with the actual URI you want to add to the playlist
             position: 0,
         };
 
-        axios.post(apiUrl, requestData, { headers })
+        axios.post(apiUrl, requestData, config )
             .then((response) => {
                 console.log('Successfully added track to playlist:', response.data);
             })
