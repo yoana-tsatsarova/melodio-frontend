@@ -14,7 +14,14 @@ import {
 } from "@/components/ui/alert-dialog";
 import Link from "next/link";
 import {Separator} from "@/components/ui/seperator";
+import {Simulate} from "react-dom/test-utils";
+import play = Simulate.play;
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
+interface Playlist {
+    id: string;
+    name: string;
+}
 interface AccountFormProps {
     session: Session | null;
 }
@@ -64,36 +71,44 @@ const FavoritesPage = ({session}: AccountFormProps) => {
         setPlaylistName(event.target.value);
     };
 
+
     const addSongsToSpotifyPlaylist = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log("session: ", session)
         try {
-            const url = `https://api.spotify.com/v1/users/${session?.user.user_metadata.provider_id}/playlists`;
             const accessToken = session?.provider_token;
 
-            const playlistData = {
-                name: {playlistName},
-                description: 'Favorite songs from Melodio',
-                public: false,
-            };
-
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                    'Content-Type': 'application/json',
-                },
-            };
-
-            const response = await axios.post(url, playlistData, config);
-            console.log("JSOM: ", response.data)
-            const trackURIS = songIds.map(id => `spotify:track:${id}`);
-            for (let i = 0; i < songIds.length; i++) {
-                const url = `https://melodio.azurewebsites.net/favorites/${songIds[i]}`;
-                await axios.delete(url);
+            async function fetchWebApi<T>(endpoint: string, method: HttpMethod, body?: any): Promise<T> {
+                const res = await axios(`https://api.spotify.com/${endpoint}`, {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                    method,
+                    data: body,
+                });
+                return res.data as T;
             }
-            setSongIds([]);
-            setSongUrls([]);
-            getFavorites();
+
+            const playlist: Playlist = await fetchWebApi(
+                `v1/users/${session?.user.user_metadata.provider_id}/playlists`,
+                'POST',
+                {
+                    "name": {playlistName},
+                    "description": "Playlist created by Melodio based on your favorite songs",
+                    "public": false
+                }
+            );
+
+            console.log("JSOM: ", playlist)
+
+            // const trackURIS = songIds.map(id => `spotify:track:${id}`);
+            // for (let i = 0; i < songIds.length; i++) {
+            //     const url = `https://melodio.azurewebsites.net/favorites/${songIds[i]}`;
+            //     await axios.delete(url);
+            // }
+            // setSongIds([]);
+            // setSongUrls([]);
+            // getFavorites();
             // const playUrl = `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`;
             // setPlaylistUrl(playUrl);
 
