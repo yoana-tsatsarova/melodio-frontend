@@ -94,20 +94,20 @@ const FavoritesPage = ({session}: AccountFormProps) => {
             setSongIds([]);
             setSongUrls([]);
             getFavorites();
-            const playUrl = `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`;
-            setPlaylistUrl(playUrl);
+            // const playUrl = `https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`;
+            // setPlaylistUrl(playUrl);
 
-            await axios.post(
-                `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-                {
-                    uris: trackURIS,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                }
-            );
+            // await axios.post(
+            //     `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+            //     {
+            //         uris: trackURIS,
+            //     },
+            //     {
+            //         headers: {
+            //             Authorization: `Bearer ${accessToken}`,
+            //         },
+            //     }
+            // );
 
             setCreatedPlaylist(true);
 
