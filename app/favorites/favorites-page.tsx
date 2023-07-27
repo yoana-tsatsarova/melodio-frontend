@@ -21,7 +21,7 @@ interface AccountFormProps {
 const FavoritesPage = ({session}: AccountFormProps) => {
     const [songUrls, setSongUrls] = useState<string[]>();
     const [songIds, setSongIds] = useState<string[]>([]);
-    const [playlistName, setPlaylistName] = useState<string>();
+    const [playlistName, setPlaylistName] = useState<string>('');
 
     const getFavorites = async () => {
         try {
@@ -77,14 +77,25 @@ const FavoritesPage = ({session}: AccountFormProps) => {
             },
         };
 
-        axios.post(url, playlistData, config)
+        const response = await axios.post(url, playlistData, config);
+        const playlistId = response.data.id;
+        const trackUris = songIds.map(id => `spotify:track:${id}`);
+
+        const apiUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+
+
+        const requestData = {
+            trackUris, // Replace 'string' with the actual URI you want to add to the playlist
+            position: 0,
+        };
+
+        axios.post(apiUrl, requestData, config )
             .then((response) => {
-                console.log('Playlist created successfully:', response.data);
+                console.log('Successfully added track to playlist:', response.data);
             })
             .catch((error) => {
-                console.error('Error creating playlist:', error.message);
+                console.error('Error adding track to playlist:', error);
             });
-
 
     }
 
@@ -92,7 +103,8 @@ const FavoritesPage = ({session}: AccountFormProps) => {
     return (
         <>
 
-            <main className={"flex  "}>
+            <main>
+
                 <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
                     <section className="
       hidden
@@ -188,6 +200,8 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                             </div>
                         </div>
                     </section>
+                    <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
+
                 </div>
                <div className={"pl-72"}> <div className={"flex flex-row justify-end  pt-4 pr-4"}> <Button className="bg-spotify-green rounded-xl  " onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button></div>
                    <div className="grid grid-cols-3  gap-x-12 p-4 justify-items-center mx-auto">
