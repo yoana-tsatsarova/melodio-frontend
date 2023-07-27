@@ -13,6 +13,7 @@ import floating9 from '../public/images/image_9.jpg';
 import floating11 from '../public/images/image_10.jpg';
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
 
 const HeroSection = () => {
     const plane1 = useRef<HTMLDivElement>(null);
@@ -35,7 +36,7 @@ const HeroSection = () => {
     }
 
     const lerp = (start: number, target: number, amount: number): number => start * (1 - amount) + target * amount;
-
+const router = useRouter();
     const animate = () => {
         xForce = lerp(xForce, 0, easing);
         yForce = lerp(yForce, 0, easing);
@@ -74,11 +75,13 @@ const HeroSection = () => {
             <div className={styles.title}>
                 <h1 className={"text-center text-8xl font-bold text-slate-50 animate-focus-in-expand-fwd"}> Melodio 🌍</h1>
                 <p className={"animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em]  drop-shadow-sm"}>Explore the world through music</p>
-                <Link href={"/explore"}>
-                    <Button variant="ghost" className="w-1/3 justify-center bg-spotify-green text-stone-100 rounded-xl mx-auto my-4 flex hover:bg-slate-300 text-slate-900 -top-2 transition delay-7000 duration-800 ease-in-out">
+
+                    <Button onClick={() => {
+                        // Redirect to the login page
+                        router.push("/explore")} } className="w-1/3 justify-center bg-spotify-green text-stone-100 rounded-xl mx-auto my-4 flex hover:bg-slate-300  -top-2 transition delay-7000 duration-800 ease-in-out">
                         Explore
                     </Button>
-                </Link>
+
             </div>
             <div
                 className={"flex-grow-0 transition-all  mt-4  justify-center items-center flex animate-pulse relative " }>

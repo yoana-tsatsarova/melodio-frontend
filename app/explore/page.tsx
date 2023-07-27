@@ -113,7 +113,7 @@ const Page = () => {
                         </Button>
                     </Link>
                     <Separator className="my-4"/>
-                    <Link href={"/favorites"} legacyBehavior>
+                    <Link href={"/favorites"} >
                         <Button variant="ghost" className="w-full justify-start">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
