@@ -4,16 +4,16 @@ import {Database} from "@/types/supabase";
 import {Button} from "@/components/ui/button";
 import Image from 'next/image';
 import { useRouter } from 'next/navigation'
+import type { Session } from '@supabase/auth-helpers-nextjs'
 
-
-export default function Login() {
+export default function LoginForm({ session }: { session: Session | null }) {
     const supabase = createClientComponentClient<Database>()
     const router = useRouter()
     const signInWithSpotify = async () => {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: "spotify",
             options: {
-                redirectTo: "/account",
+                redirectTo: "localhost:3000/callback",
                 scopes:
                     "user-read-playback-state user-modify-playback-state user-read-currently-playing playlist-read-private playlist-modify-private user-read-playback-position user-top-read",
             },
@@ -23,14 +23,14 @@ export default function Login() {
 
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2 px-4 sm:px-0">
+        <div className="flex flex-col mx-auto items-center justify-center min-h-screen py-2 px-4 sm:px-0">
             <div className="flex items-center justify-center w-full h-full">
                 <div className="w-full max-w-lg">
                     <div>
                         <h1 className="text-4xl font-bold">Login</h1>
-                        <p className="mt-2 text-neutral-600">
+                        <p className="mt-2 text-neutral-300">
                             Welcome to the{" "}
-                            <span className="font-semibold text-neutral-800">
+                            <span className="font-semibold text-neutral-400">
                                 Melodio World of Songs
                             </span>{" "}
                             Please login your account by email or the Spotify account.
