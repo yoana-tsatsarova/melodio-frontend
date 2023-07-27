@@ -21,7 +21,7 @@ interface AccountFormProps {
 const FavoritesPage = ({session}: AccountFormProps) => {
     const [songUrls, setSongUrls] = useState<string[]>();
     const [songIds, setSongIds] = useState<string[]>([]);
-    const [playlistName, setPlaylistName] = useState<string>();
+    const [playlistName, setPlaylistName] = useState<string>('');
 
     const getFavorites = async () => {
         try {
@@ -77,21 +77,14 @@ const FavoritesPage = ({session}: AccountFormProps) => {
             },
         };
 
-        axios.post(url, playlistData, config)
-            .then((response) => {
-                console.log('Playlist created successfully:', response.data);
-            })
-            .catch((error) => {
-                console.error('Error creating playlist:', error.message);
-            });
-
+        const response = await axios.post(url, playlistData, config);
+        console.log(response);
 
     }
 
 
     return (
         <>
-            <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
             <main className={"flex h-screen w-full"}>
                 <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
                     <section className="
@@ -188,6 +181,8 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                             </div>
                         </div>
                     </section>
+                    <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
+
                 </div>
                 {/*<Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>*/}
                 <div className="grid grid-cols-4 gap-4 place-items-center mx-auto">
