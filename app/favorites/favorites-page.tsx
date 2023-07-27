@@ -91,9 +91,9 @@ const FavoritesPage = ({session}: AccountFormProps) => {
 
     return (
         <>
+            <input onChange={(e) => setPlaylistName(e.target.value)}/>
+            <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
             <main className={"flex h-screen w-full"}>
-                <input onChange={(e) => setPlaylistName(e.target.value)}/>
-                <Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>
                 <div className="col-span-6 lg:col-span-4 lg:border-r border-stone-700">
                     <section className="
       hidden
