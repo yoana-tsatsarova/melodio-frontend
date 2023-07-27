@@ -92,14 +92,6 @@ const Page = () => {
           w-[300px]
           p-4
         ">
-                        {/*<Link href={"/"}>*/}
-                        {/*    <div className="px-3 py-4">*/}
-                        {/*        <h2 className="mb-2 px-4 text-lg font-semibold text-spotify-green tracking-tight">*/}
-                        {/*            Melodio World 🌍*/}
-                        {/*        </h2>*/}
-                        {/*    </div>*/}
-                        {/*</Link>*/}
-                        {/*<Separator className="my-4 border-stone-700"/>*/}
                         <Link href={"/explore"}>
                             <Button variant="ghost" className="w-full justify-start">
                                 <svg
@@ -163,7 +155,7 @@ const Page = () => {
                         <Separator className="my-4"/>
                     </section>
                 </div>
-                <div className={"w-full"}>
+                <div className="w-full overflow-hidden">
                     <div className="flex w-full max-w-xl mx-auto items-center space-x-2">
                         <Input
                             className={"rounded-md"}
@@ -179,7 +171,7 @@ const Page = () => {
                             Explore
                         </Button>
                     </div>
-                    <div className="w-full  ">
+                    <div className="w-auto overflow-hidden">
                         <div>
                             <MapBox
                                 locations={locations}
@@ -188,17 +180,16 @@ const Page = () => {
                             />
                         </div>
                     </div>
-                    <div>
-                        <div className="  p-4 overflow-auto">
+                    <div className="overflow-hidden">
+                        <div className="  p-4">
                             <Marquee pauseOnHover={true}>
-                                <div className="flex space-x-4 bg-gray-1000 px-1 rounded-md overscroll-auto gap-2">
+                                <div className="flex space-x-4 bg-gray-1000 px-1 rounded-md gap-2">
                                     {songUrls?.map((songUrl) => (
                                         <div key={songUrl} className={"group"}>
 
                                             <iframe
-                                                className="rounded-md -mb-8 "
+                                                className="rounded-md -mb-8 overflow-hidden max-h-[270px]"
                                                 src={songUrl}
-                                                width="100%"
                                                 height="270px"
                                                 allowFullScreen={true}
                                                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"

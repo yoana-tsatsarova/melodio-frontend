@@ -29,7 +29,7 @@ export default async function RootLayout({
       )}>
 
         <Navbar/>
-        <main className="flex min-h-screen  items-center bg-gray-1100 text-stone-50">
+        <main className="flex min-h-screen w-screen overscroll-auto items-center bg-gray-1100 text-stone-50">
 
           <ScrollObserver>{children}</ScrollObserver>
           <Toaster />
