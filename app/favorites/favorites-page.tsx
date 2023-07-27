@@ -134,7 +134,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                         </Link>
                         <Separator className="my-4"/>
                         <Link href={"/favorites"}>
-
+                            <Button variant="ghost" className="w-full justify-start">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -149,6 +149,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                                     <path d="M12 18V2l7 4" />
                                 </svg>
                                 Your Favorites
+                            </Button>
                            </Link>
                         <Separator className="my-4"/>
                         <Link href={"/recommended"}>
