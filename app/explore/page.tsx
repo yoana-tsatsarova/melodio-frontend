@@ -153,26 +153,26 @@ const Page = () => {
                         <Separator className="my-4"/>
                             <h2>About Us</h2>
                             {/*<img src="images/carolina.jpg" className="rounded-full w-10 h-10"/>*/}
-                        <Separator className="my-4"/>
+                        <Separator className="my-4 mb-28"/>
                         <img src="/images/JavaPuffs_logo_black-removebg-preview%20(1).png"/>
                         <div className="avatar-group -space-x-6">
                             <div className="avatar border-none">
-                                <div className="w-24 rounded-full">
+                                <div className="w-20 rounded-full">
                                     <img src="/images/carolina.jpg" />
                                 </div>
                             </div>
                             <div className="avatar border-none">
-                                <div className="w-24 rounded-full">
+                                <div className="w-20 rounded-full">
                                     <img src="/images/togrul.jpg" />
                                 </div>
                             </div>
                             <div className="avatar border-none">
-                                <div className="w-24 rounded-full">
+                                <div className="w-20 rounded-full">
                                     <img src="/images/yoana.jpg" />
                                 </div>
                             </div>
                             <div className="avatar border-none">
-                                <div className="w-24 rounded-full">
+                                <div className="w-20 rounded-full">
                                     <img src="/images/ryan.webp" />
                                 </div>
                             </div>
@@ -205,12 +205,11 @@ const Page = () => {
                         </div>
                     </div>
                     <div className="overflow-hidden">
-                        <div className="  p-4">
+                        <div className="p-4">
                             <Marquee pauseOnHover={true}>
                                 <div className="flex space-x-4 bg-gray-1000 px-1 rounded-md gap-2">
-                                    {songUrls?.map((songUrl) => (
+                                    {songUrls?.map((songUrl, index) => (
                                         <div key={songUrl} className={"group"}>
-
                                             <iframe
                                                 className="rounded-md -mb-8 overflow-hidden max-h-[270px]"
                                                 src={songUrl}
@@ -219,7 +218,6 @@ const Page = () => {
                                                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                                                 loading="lazy"
                                             ></iframe>
-
                                             <form action="">
                                                 <Button
                                                     className={
@@ -232,18 +230,16 @@ const Page = () => {
                                                         )
                                                     }
                                                 >
-                                                    <FaHeart/> Add to Favorite
+                                                    <FaHeart /> Add to Favorite
                                                 </Button>
                                             </form>
                                         </div>
-
                                     ))}
-
-
                                 </div>
                             </Marquee>
                         </div>
                     </div>
+
                 </div>
             </main>
         </>
