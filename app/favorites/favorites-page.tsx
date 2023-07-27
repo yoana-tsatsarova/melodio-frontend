@@ -163,8 +163,29 @@ const FavoritesPage = ({session}: AccountFormProps) => {
                             </Button>
                         </Link>
                         <Separator className="my-4"/>
-                        <h2>About Us</h2>
-                        <Separator className="my-4"/>
+                        <img src="/images/JavaPuffs_logo_black-removebg-preview%20(1).png"/>
+                        <div className="avatar-group -space-x-6">
+                            <div className="avatar border-none">
+                                <div className="w-24 rounded-full">
+                                    <img src="/images/carolina.jpg" />
+                                </div>
+                            </div>
+                            <div className="avatar border-none">
+                                <div className="w-24 rounded-full">
+                                    <img src="/images/togrul.jpg" />
+                                </div>
+                            </div>
+                            <div className="avatar border-none">
+                                <div className="w-24 rounded-full">
+                                    <img src="/images/yoana.jpg" />
+                                </div>
+                            </div>
+                            <div className="avatar border-none">
+                                <div className="w-24 rounded-full">
+                                    <img src="/images/ryan.webp" />
+                                </div>
+                            </div>
+                        </div>
                     </section>
                 </div>
                 {/*<Button onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button>*/}

@@ -150,9 +150,6 @@ const Page = () => {
                         </Button>
                     </Link>
                     <Separator className="my-4"/>
-                        <h2>About Us</h2>
-                        {/*<img src="images/carolina.jpg" className="rounded-full w-10 h-10"/>*/}
-                    <Separator className="my-4"/>
                     <img src="/images/JavaPuffs_logo_black-removebg-preview%20(1).png"/>
                     <div className="avatar-group -space-x-6">
                         <div className="avatar border-none">
