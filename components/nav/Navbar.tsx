@@ -43,7 +43,7 @@ export default function Navbar({session}: AccountFormProps) {
     async function getUserProfile() {
         const profileData = await fetchWebApi('v1/me', 'GET');
         setSpotifyAvatarUrl(profileData.images[0].url);
-        router.refresh();
+
     }
 
     useEffect(() => {

@@ -179,7 +179,7 @@ const Page = () => {
                 <div className="flex w-full max-w-xl mx-auto items-center space-x-2">
                     <form   className={"rounded-md flex space-x-2 items-center justify-center"} onSubmit={(e) => { getTopTenTracks(e); }}>
                         <Input
-                            className={"rounded-md w-80"}
+                            className={"rounded-md w-60 md:w-80"}
                             placeholder={"Enter a Country"}
                             onChange={(e) => setCountry(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}
                         />
@@ -210,7 +210,7 @@ const Page = () => {
                                     <div key={songUrl} className={"group"}>
 
                                         <iframe
-                                            className="rounded-md -mb-8 overflow-hidden max-h-[260px]"
+                                            className="rounded-md -mb-4 overflow-hidden max-h-[260px]"
                                             src={songUrl}
                                             height="270px"
                                             allowFullScreen={true}
