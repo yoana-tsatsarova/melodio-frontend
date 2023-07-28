@@ -45,7 +45,7 @@ export default async function RootLayout({
         )}>
 
         <Navbar session={session} />
-        <main className="bg-gray-1100">
+        <main className="bg-gray-1100 dark:bg-black">
             <ScrollObserver>{children}</ScrollObserver>
             <Toaster />
         </main>

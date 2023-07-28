@@ -108,7 +108,7 @@ export default function Navbar({session}: AccountFormProps) {
                         </DropdownMenuContent>
                     </DropdownMenu>
                 ) : (
-                    <Button size={"lg"} className="bg-spotify-green rounded-2xl text-stone-200" onClick={() => {
+                    <Button  className="bg-spotify-green rounded-2xl text-stone-100" onClick={() => {
                         // Redirect to the login page
                         router.push("/login");
 

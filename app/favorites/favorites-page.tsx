@@ -205,7 +205,7 @@ const FavoritesPage = ({session}: AccountFormProps) => {
 
                 </div>
                <div className={"justify-center mx-auto w-max items-center"}> <div className={"flex flex-row justify-end  pt-4 pr-4"}> <Button className="bg-spotify-green rounded-xl  " onClick={addSongsToSpotifyPlaylist}>Add to Spotify</Button></div>
-                   <div className="grid grid-cols-3  gap-x-12 p-4 justify-items-center mx-auto">
+                   <div className="grid grid-cols-2 md:grid-cols-3  gap-x-12 p-4 justify-items-center mx-auto">
 
                        {songUrls?.map((songUrl) => (
                            <div key={songUrl} className={"group"}>
