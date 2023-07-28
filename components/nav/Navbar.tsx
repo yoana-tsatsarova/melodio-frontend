@@ -43,6 +43,7 @@ export default function Navbar({session}: AccountFormProps) {
     async function getUserProfile() {
         const profileData = await fetchWebApi('v1/me', 'GET');
         setSpotifyAvatarUrl(profileData.images[0].url);
+        router.refresh();
     }
 
     useEffect(() => {
@@ -60,6 +61,7 @@ export default function Navbar({session}: AccountFormProps) {
         } catch (error) {
             console.error('Error signing out:', error);
         }
+        router.refresh();
     };
 
     // Create a reference to Next.js router
@@ -91,7 +93,7 @@ export default function Navbar({session}: AccountFormProps) {
                             <DropdownMenuLabel onClick={() => {
                                 // Redirect to the login page
                                 router.push("/account");
-                                router.refresh();
+
                             }}>My Account</DropdownMenuLabel>
                             <DropdownMenuGroup>
                                 <DropdownMenuItem>
@@ -109,7 +111,7 @@ export default function Navbar({session}: AccountFormProps) {
                     <Button size={"lg"} className="bg-spotify-green rounded-2xl text-stone-200" onClick={() => {
                         // Redirect to the login page
                         router.push("/login");
-                        router.refresh();
+
                     }}>Login</Button>
                 )}
             </div>
