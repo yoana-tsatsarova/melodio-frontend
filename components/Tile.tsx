@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useRef } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { TileContext } from "./TileWrapper";
 import { WorkContainer, WorkLeft, WorkRight } from "./Work";
 import Balancer from "react-wrap-balancer";

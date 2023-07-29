@@ -1,6 +1,6 @@
 import React from "react";
 import Member from "@/components/Member";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const Aboutus = () => {
     const Membermob   = [
@@ -47,7 +47,7 @@ const Aboutus = () => {
           <img src="/images/JavaPuffs_logo_black-without_background.png"/>
         </div>
         <div className="justify-center flex mx-auto items-center mt-6">
-        <Image className={" shadow-2xl rounded-lg"} src="/images/mobpicture.jpg" alt="JaffaPuffs" width={500} height={500} />
+        <Image className={" shadow-2xl rounded-lg"} src="/images/mobpicture.jpg" alt="JaffaPuffs" width={500} height={500}  layout="responsive"/>
         </div>
       </div>
         <div className="container mx-auto px-11 mt-28">

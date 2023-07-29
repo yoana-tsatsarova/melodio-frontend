@@ -2,7 +2,7 @@
 import {createClientComponentClient} from '@supabase/auth-helpers-nextjs'
 import {Database} from "@/types/supabase";
 import {Button} from "@/components/ui/button";
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useRouter } from 'next/navigation'
 import type { Session } from '@supabase/auth-helpers-nextjs'
 

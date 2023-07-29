@@ -1,5 +1,5 @@
 "use client";
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import styles from '../app/page.module.scss';
 import React, { useRef, MouseEvent } from 'react';
 import gsap from 'gsap';

@@ -21,8 +21,6 @@ B
 E
 components/Member.tsx,1/c/1cf8f68b2dd7e06a062ca0e1aff657331ced1288
 F
-components/Aboutus.tsx,7/e/7e1d46605bc16acb3c9ed75c9cf919d3d922dd7e
-F
 app/favorites/page.tsx,7/7/773caeb485fe9814a4b95ec19a1c598288c6036c
 <
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
@@ -62,3 +60,15 @@ B
 app/globals.css,4/d/4dfa49b1332116153eb16507891285845e9ab86e
 E
 components/MapBox.tsx,c/a/ca1b68b7dc44774e800097d44ad85ad8924d4df7
+D
+app/explore/page.tsx,6/d/6d41baf0216fcdb68d795515dc3ceac85cc0fe3e
+C
+app/login/Login.tsx,5/2/525c30fd130df947c5bd93c1f8397eb42f66fce2
+L
+app/account/account-form.tsx,d/5/d5bf9f0b15ce3f0afa9faa26d5a65590cee85fa4
+M
+components/SpotifyProfile.tsx,3/b/3b067028ba4b11ec2b70abd586ed23b10f8c5071
+G
+components/TechUsed.tsx,1/5/15e82f5d0ee1749d38169d3e43e61ca6b09b609b
+I
+components/nav/Navbar.tsx,4/5/4536f6cf18d26de20621fd53cbbf4c312435b38a
