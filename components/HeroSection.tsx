@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/legacy/image";
+import Image from 'next/image';
 import styles from '../app/page.module.scss';
 import React, { useRef, MouseEvent } from 'react';
 import gsap from 'gsap';
@@ -36,7 +36,7 @@ const HeroSection = () => {
     }
 
     const lerp = (start: number, target: number, amount: number): number => start * (1 - amount) + target * amount;
-const router = useRouter();
+    const router = useRouter();
     const animate = () => {
         xForce = lerp(xForce, 0, easing);
         yForce = lerp(yForce, 0, easing);
@@ -59,24 +59,24 @@ const router = useRouter();
     return (<div className="h-fit" >
 
 
-        <main onMouseMove={(e) => {manageMouseMove(e)}} className={styles.main}>
-            <div ref={plane1} className={styles.plane}>
-                <Image src={floating6} alt='image' width={300} />
-                <Image src={floating9} alt='image' width={325} />
-                <Image src={floating1} alt='image' width={250} />
-            </div>
-            <div ref={plane2} className={styles.plane}>
-                <Image src={floating4} alt='image' width={250} />
-                <Image src={floating3} alt='image' width={200} />
-                <Image src={floating11} alt='image' width={225} />
-            </div>
-            <div ref={plane3} className={styles.plane}>
-                <Image src={floating5} alt='image' width={150} />
-                <Image src={floating2} alt='image' width={150} />
-            </div>
-            <div className={styles.title}>
-                <h1 className={"text-center text-8xl font-bold font-sans text-slate-50 animate-focus-in-expand-fwd"}> Melodio 🌍</h1>
-                <p className={"animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em]  drop-shadow-sm"}>Explore the world through music</p>
+            <main onMouseMove={(e) => {manageMouseMove(e)}} className={styles.main}>
+                <div ref={plane1} className={styles.plane}>
+                    <Image src={floating6} alt='image' width={300} />
+                    <Image src={floating9} alt='image' width={325} />
+                    <Image src={floating1} alt='image' width={250} />
+                </div>
+                <div ref={plane2} className={styles.plane}>
+                    <Image src={floating4} alt='image' width={250} />
+                    <Image src={floating3} alt='image' width={200} />
+                    <Image src={floating11} alt='image' width={225} />
+                </div>
+                <div ref={plane3} className={styles.plane}>
+                    <Image src={floating5} alt='image' width={150} />
+                    <Image src={floating2} alt='image' width={150} />
+                </div>
+                <div className={styles.title}>
+                    <h1 className={"text-center text-8xl font-bold font-sans text-slate-50 animate-focus-in-expand-fwd"}> Melodio 🌍</h1>
+                    <p className={"animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em]  drop-shadow-sm"}>Explore the world through music</p>
 
                     <Button onClick={() => {
                         // Redirect to the login page
@@ -84,11 +84,11 @@ const router = useRouter();
                         Explore
                     </Button>
 
-            </div>
-            <div
-                className={"flex-grow-0 transition-all  mt-4  justify-center items-center flex animate-pulse relative " }>
-            </div>
-        </main>
+                </div>
+                <div
+                    className={"flex-grow-0 transition-all  mt-4  justify-center items-center flex animate-pulse relative " }>
+                </div>
+            </main>
         </div>
     );
 }

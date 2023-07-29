@@ -37,14 +37,14 @@ const components: Components = {
       </WorkLeft>
       <WorkRight progress={progress}>
           <div className="flex justify-center">
-              <Image className=" rounded-xl shadow-2xl"
-                  width={840}
-                  height={1620}
+              <img className=" rounded-xl shadow-2xl object-cover"
+                     width={850}
+                     height={1000}
                   src="/images/yoana.jpg"
                   alt="Awesome Project 1"
                   sizes="100vw"
                   style={{
-                      width: "fit-content",
+                      width: "auto",
                       height: "auto",
                   }}
               />
@@ -56,15 +56,15 @@ const components: Components = {
     <WorkContainer>
       <WorkRight progress={progress}>
 
-        <Image className=" rounded-xl shadow-2xl"
-          width={840}
-          height={1620}
+          <Image className=" rounded-xl shadow-2xl object-cover"
+                 width={850}
+                 height={1000}
           src="/images/togrul.jpg"
           alt="Awesome Project 2"
           sizes="100vw"
           style={{
-            width: "100%",
-            height: "auto",
+              width: "auto",
+              height: "auto",
           }}
         />
       </WorkRight>
@@ -91,15 +91,15 @@ const components: Components = {
             </Balancer>
         </WorkLeft>
       <WorkRight progress={progress}>
-        <Image className=" rounded-xl shadow-2xl"
-          width={840}
-          height={1620}
+          <Image className=" rounded-xl shadow-2xl object-cover"
+                 width={850}
+                 height={1000}
           src="/images/carolina.jpg"
           alt="Awesome Project 3"
-          sizes="100vw"
+
           style={{
-            width: "100%",
-            height: "auto",
+              width: "auto",
+              height: "auto",
           }}
         />
       </WorkRight>
@@ -108,14 +108,14 @@ const components: Components = {
     Ryan: ({ progress }) => (
         <WorkContainer>
             <WorkRight progress={progress}>
-                <Image className=" rounded-xl shadow-2xl"
-                    width={840}
-                    height={1620}
+                <Image className=" rounded-xl shadow-2xl object-cover"
+                       width={850}
+                       height={1000}
                     src="/images/ryan.webp"
                     alt="Awesome Project 3"
                     sizes="100vw"
                     style={{
-                        width: "100%",
+                        width: "auto",
                         height: "auto",
                     }}
                 />

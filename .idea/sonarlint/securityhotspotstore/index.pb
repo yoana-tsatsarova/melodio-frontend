@@ -20,8 +20,6 @@ B
 next.config.js,8/1/811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
 E
 components/Member.tsx,1/c/1cf8f68b2dd7e06a062ca0e1aff657331ced1288
-F
-app/favorites/page.tsx,7/7/773caeb485fe9814a4b95ec19a1c598288c6036c
 <
 package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
 G

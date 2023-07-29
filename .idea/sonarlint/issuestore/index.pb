@@ -18,8 +18,6 @@ B
 components/Box.tsx,e/a/ea1966bc6ee4db478f35f4cbe5bb644506b1a4fe
 >
 next.config.js,8/1/811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
-F
-app/favorites/page.tsx,7/7/773caeb485fe9814a4b95ec19a1c598288c6036c
 E
 components/Member.tsx,1/c/1cf8f68b2dd7e06a062ca0e1aff657331ced1288
 <
